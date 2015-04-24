@@ -12,5 +12,19 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+
+    <string name="content_authority">com.ithinkbest.phoneix.assistant</string>
+
     <string name="action_example">Example action</string>
+
+    <string name="btn1">政府開放資料</string>
+    <string name="btn2">我也要提需求</string>
+    <string name="btn3">關於這個專案</string>
+    <string name="btn4">最近提的需求</string>
+    <string name="title_activity_list_view">ListViewActivity</string>
+    <string name="open1">行業別</string>
+    <string name="open2">縣市別</string>
+    <string name="open3">公司登記現有家數及實收資本額</string>
+    <string name="title_activity_open_data">Open</string>
+    <string name="title_activity_open_datad">OpenData</string>
 </resources>

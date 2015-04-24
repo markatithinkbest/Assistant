@@ -12,14 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/btn1"
+        android:text="@string/open1"
         android:onClick="onClickBtn1"
         android:id="@+id/btn1" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn2"
+        android:text="@string/open2"
         android:onClick="onClickBtn2"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/btn2" />
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/btn3"
+        android:text="@string/open3"
         android:onClick="onClickBtn3"
         android:id="@+id/btn3" />
 
