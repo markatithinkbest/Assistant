@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class ListViewActivity extends Activity {
+public class BusinessCategoryActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
