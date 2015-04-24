@@ -7,10 +7,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
-    static String LOG_TAG="MARK987";
+    static String LOG_TAG = "MARK987";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onClickBtn1(View view) {
-        Log.d(LOG_TAG,"...btn1");
+        Log.d(LOG_TAG, "...btn1");
         Intent intent = new Intent(this, OpenDataActivity.class);
 //        EditText editText = (EditText) findViewById(R.id.edit_message);
 //        String message = editText.getText().toString();
@@ -49,12 +51,14 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
 
 
+    }
 
-    }
     public void onClickBtn2(View view) {
-        Log.d(LOG_TAG,"...btn2");
+        Toast.makeText(this, "...DOING", Toast.LENGTH_SHORT).show();
     }
+
     public void onClickBtn3(View view) {
-        Log.d(LOG_TAG,"...btn3");
+        Log.d(LOG_TAG, "...btn3");
+        Toast.makeText(this, "...DOING", Toast.LENGTH_SHORT).show();
     }
 }
