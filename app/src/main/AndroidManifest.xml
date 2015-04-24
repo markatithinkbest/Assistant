@@ -22,7 +22,7 @@
         </activity>
         <activity
             android:name=".OpenDataActivity"
-            android:label="@string/title_activity_open_datad" >
+            android:label="@string/title_activity_open_data" >
         </activity>
         <provider
             android:authorities="@string/content_authority"
