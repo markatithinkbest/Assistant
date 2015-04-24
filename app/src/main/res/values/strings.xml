@@ -21,10 +21,10 @@
     <string name="btn2">我也要提需求</string>
     <string name="btn3">關於這個專案</string>
     <string name="btn4">最近提的需求</string>
-    <string name="title_activity_list_view">ListViewActivity</string>
+    <string name="title_activity_business_category">行業別</string>
     <string name="open1">行業別</string>
     <string name="open2">縣市別</string>
     <string name="open3">公司登記現有家數及實收資本額</string>
-    <string name="title_activity_open_data">Open</string>
-    <string name="title_activity_open_datad">OpenData</string>
+    <string name="title_activity_open_data">資料開放</string>
+    <string name="title_activity_city_list">縣市別</string>
 </resources>

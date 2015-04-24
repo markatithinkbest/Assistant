@@ -53,6 +53,13 @@ public class OpenDataActivity extends ActionBarActivity {
     }
     public void onClickBtn2(View view) {
         Log.d(LOG_TAG,"...btn2");
+        Intent intent = new Intent(this, CityListActivity.class);
+//        EditText editText = (EditText) findViewById(R.id.edit_message);
+//        String message = editText.getText().toString();
+//        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+
+
     }
     public void onClickBtn3(View view) {
         Log.d(LOG_TAG,"...btn3");
