@@ -15,11 +15,26 @@ public class CmpRpt1Activity extends ActionBarActivity {
         setContentView(R.layout.activity_cmp_rpt1);
 
         StringBuilder result=new StringBuilder();
-        result.append("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        result.append("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy111111234567566576876878798");
+        result.append("<table border='1' cellpadding=\"0\" cellspacing=\"0\"");
+        for (int row=0;row<22;row++){
+            result.append("<tr>");
+            for (int col=0;col<22;col++){
+                result.append("<td>"+col+"yyyyy </td>");
 
-        WebView myWebView = (WebView) findViewById(R.id.webView);
+
+            }
+            result.append("</tr>");
+
+        }
+        result.append("</table>");
+
+        WebView webView = (WebView) findViewById(R.id.webView);
+        webView.setHorizontalScrollBarEnabled(true);
+        webView.setVerticalScrollBarEnabled(true);
+        webView.getSettings().setUseWideViewPort(true);
         //Finally this one worked, show Chinese properly!
-        myWebView.loadData(result.toString(), "text/html; charset=utf-8", "UTF-8");
+        webView.loadData(result.toString(), "text/html; charset=utf-8", "UTF-8");
     }
 
 
