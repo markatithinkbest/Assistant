@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 
 public class S1Activity extends ActionBarActivity {
     static String LOG_TAG = "MARK987";
+    static int questionNumber=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,25 +41,44 @@ public class S1Activity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void onPrevButtonClicked(View view) {
+        questionNumber--;
+
+
+    }
+    public void onNextButtonClicked(View view) {
+        questionNumber++;
+    }
+
+    private void ShowQuestion(){
+        switch (questionNumber){
+            case 2:
+
+
+
+        }
+    }
+    
+
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
 
         // Check which radio button was clicked
         switch(view.getId()) {
-            case R.id.radioButton1:
+            case R.id.radioBtn1:
                 if (checked){
                     Log.d(LOG_TAG,"...radioButton1");
                 }
                     // Pirates are the best
                     break;
-            case R.id.radioButton2:
+            case R.id.radioBtn2:
                 if (checked){
                     Log.d(LOG_TAG,"...radioButton2");
                 }
                     // Ninjas rule
                     break;
-            case R.id.radioButton3:
+            case R.id.radioBtn3:
                 if (checked){
                     Log.d(LOG_TAG,"...radioButton3");
                 }

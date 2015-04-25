@@ -32,6 +32,12 @@
     <string name="survey1">問卷1: 關於這支APP</string>
     <string name="survey2">...</string>
     <string name="survey3">...</string>
-    <string name="title_activity_s1">S1Activity</string>
+    <string name="title_activity_s1">問卷1: 關於這支APP</string>
     <string name="s1_01">1. 操作這支APP您覺得?</string>
+    <string name="s1_01a">容易</string>
+    <string name="s1_01b">有點困難</string>
+    <string name="s1_01c">很困難</string>
+    <string name="prev">上一題</string>
+    <string name="next">下一題</string>
+
 </resources>
