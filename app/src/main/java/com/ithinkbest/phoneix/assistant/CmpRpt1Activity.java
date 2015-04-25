@@ -17,6 +17,7 @@ public class CmpRpt1Activity extends ActionBarActivity {
     static String LOG_TAG = "MARK987";
 
     WebView webView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +31,13 @@ public class CmpRpt1Activity extends ActionBarActivity {
 //        //Finally this one worked, show Chinese properly!
 //        webView.loadData(getHtml(), "text/html; charset=utf-8", "UTF-8");
     }
-    String getHtml(){
-        StringBuilder result=new StringBuilder();
+
+    String getHtml() {
+        StringBuilder result = new StringBuilder();
         //  result.append("<head><meta name='viewport' content='target-densityDpi=device-dpi'/></head>");
-        String s="<head><meta name=viewport content=target-density dpi=medium-dpi, width=device-width/></head>";
+        String s = "<head><meta name=viewport content=target-density dpi=medium-dpi, width=device-width/></head>";
         result.append(s);
-  //      result.append("中文是必要的xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy111111234567566576876878798");
+        //      result.append("中文是必要的xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy111111234567566576876878798");
 //        result.append("<table border='1' cellpadding=\"0\" cellspacing=\"0\">");
 //        for (int row=0;row<52;row++){
 //            result.append("<tr>");
@@ -49,15 +51,15 @@ public class CmpRpt1Activity extends ActionBarActivity {
 //        result.append("中文是必要的xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy111111234567566576876878798");
 
 //http://data.gov.tw/comment/3137#comment-3137
-        String title="公司登記現有家數及實收資本額－按行業別及縣市別";
-      //  String addr="https://data.gcis.nat.gov.tw/od/detail;jsessionid=093021B3078069C877EC3108A567D65B?oid=ACA82CEE-1C9D-47F8-9E5F-1DE39D5EEAF9";
-        String addr="http://data.gov.tw/";
+        String title = "公司登記現有家數及實收資本額－按行業別及縣市別";
+        //  String addr="https://data.gcis.nat.gov.tw/od/detail;jsessionid=093021B3078069C877EC3108A567D65B?oid=ACA82CEE-1C9D-47F8-9E5F-1DE39D5EEAF9";
+        String addr = "http://data.gov.tw/";
 
-        String date="2015年03月";
+        String date = "2015年03月";
 
-        result.append("<h3>"+title+"</h3>");
-        result.append("原始檔案下載:"+date+"<br>");
-        result.append("資料來源 -<a href='"+addr+"'> 政府資料開放平臺</a>");
+        result.append("<h3>" + title + "</h3>");
+        result.append("原始檔案下載月份: " + date + "<br>");
+        result.append("資料來源: <a href='" + addr + "'> 政府資料開放平臺</a>" + "<br><br>");
 
 
         String next[] = {};
@@ -65,9 +67,9 @@ public class CmpRpt1Activity extends ActionBarActivity {
 
         try {
             CSVReader reader = new CSVReader(new InputStreamReader(getAssets().open("cmpRpt1.csv")));
-            while(true) {
+            while (true) {
                 next = reader.readNext();
-                if(next != null) {
+                if (next != null) {
 
 
                     list.add(next);
@@ -81,11 +83,11 @@ public class CmpRpt1Activity extends ActionBarActivity {
 
         result.append("<table border='1' cellpadding='0' cellspacing='0'>");
 
-        for (int i=0;i<list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             result.append("<tr>");
-            for (int j=0;j<list.get(i).length;j++){
-              //  Log.d(LOG_TAG,list.get(i)[j]);
-                String str=list.get(i)[j].toString().replace(" ","&nbsp;");
+            for (int j = 0; j < list.get(i).length; j++) {
+                //  Log.d(LOG_TAG,list.get(i)[j]);
+                String str = list.get(i)[j].toString().replace(" ", "&nbsp;");
 
                 try {
 //                    if (j == 1) {
@@ -114,23 +116,31 @@ public class CmpRpt1Activity extends ActionBarActivity {
 //
 //                    }
 
-                    if (j>0 && 1==j %2) {
+                    if (j > 0 && 1 == j % 2) {
                         Integer x = Integer.parseInt(str);
                         DecimalFormat myFormatter = new DecimalFormat("#,###");
                         str = myFormatter.format(x);
                     }
-                    if (j>0 && 0==j %2){
+                    if (j > 0 && 0 == j % 2) {
                         Double x = Double.parseDouble(str);
                         DecimalFormat myFormatter = new DecimalFormat("#,###.00");
                         str = myFormatter.format(x);
                     }
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     // not to
                 }
 //                String str=list.get(i)[j].toString().replace(" ","_");
+                if (i == 0) { // here get bold effect
+                    result.append("<th   align='center' nowrap=\"nowrap\">&nbsp;" + str + "&nbsp;</th>");
+                } else {
+                    if (j == 0) {
+                        result.append("<th   align='right' nowrap=\"nowrap\">&nbsp;" + str + "&nbsp;</th>");
 
-                result.append("<td   align='right' nowrap=\"nowrap\">&nbsp;"+str+"&nbsp;</td>");
+                    } else {
+                        result.append("<td   align='right' nowrap=\"nowrap\">&nbsp;" + str + "&nbsp;</td>");
+                    }
+                }
             }
             result.append("</tr>");
         }
@@ -138,6 +148,7 @@ public class CmpRpt1Activity extends ActionBarActivity {
         return result.toString();
 
     }
+
     private void setupWebView() {
 
         webView = (WebView) findViewById(R.id.webView);
@@ -148,7 +159,7 @@ public class CmpRpt1Activity extends ActionBarActivity {
         webView.loadData(getHtml(), "text/html; charset=utf-8", "UTF-8");
     }
 
-//        webView.getSettings().setJavaScriptEnabled(true);
+    //        webView.getSettings().setJavaScriptEnabled(true);
 //        webView.setWebViewClient(new WebViewClient() {
 //            @Override
 //            public void onPageFinished(WebView view, String url) {
