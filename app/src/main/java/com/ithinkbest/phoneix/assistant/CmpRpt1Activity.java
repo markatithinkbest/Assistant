@@ -73,6 +73,12 @@ public class CmpRpt1Activity extends ActionBarActivity {
             for (int j=0;j<list.get(i).length;j++){
               //  Log.d(LOG_TAG,list.get(i)[j]);
                 String str=list.get(i)[j].toString().replace(" ","&nbsp;");
+
+                if (j==1){
+                    Integer x=Integer.parseInt(str);
+                //   str= NumberFormat.getNumberInstance(Locale.US).format(x);
+                   // String.format("")
+                }
 //                String str=list.get(i)[j].toString().replace(" ","_");
 
                 result.append("<td   align='right' nowrap=\"nowrap\">&nbsp;"+str+"&nbsp;</td>");
