@@ -7,15 +7,28 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 
 public class S1Activity extends ActionBarActivity {
     static String LOG_TAG = "MARK987";
     static int questionNumber=1;
+
+    TextView txtQuestion;
+    RadioButton radioBtn1;
+    RadioButton radioBtn2;
+    RadioButton radioBtn3;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_s1);
+        txtQuestion=(TextView)findViewById(R.id.txtQuestion) ;
+        radioBtn1 =(RadioButton)findViewById(R.id.radioBtn1);
+        radioBtn2 =(RadioButton)findViewById(R.id.radioBtn2);
+        radioBtn3 =(RadioButton)findViewById(R.id.radioBtn3);
+
     }
 
 
@@ -43,18 +56,28 @@ public class S1Activity extends ActionBarActivity {
 
     public void onPrevButtonClicked(View view) {
         questionNumber--;
-
+        ShowQuestion();
 
     }
     public void onNextButtonClicked(View view) {
         questionNumber++;
+        ShowQuestion();
     }
 
     private void ShowQuestion(){
         switch (questionNumber){
             case 2:
-
-
+                txtQuestion.setText("2. 您使用Anroid手機,已經多久了?");
+                radioBtn1.setText("三個月以內");
+                radioBtn2.setText("三個月到一年左右");
+                radioBtn3.setText("一年以上");
+                break;
+            case 3:
+                txtQuestion.setText("3. 請您自我評估使用Anroid手機的熟練度?");
+                radioBtn1.setText("還很陌生");
+                radioBtn2.setText("一般夠用");
+                radioBtn3.setText("非常熟練");
+                break;
 
         }
     }

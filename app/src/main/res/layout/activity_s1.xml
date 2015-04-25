@@ -11,6 +11,7 @@
     tools:context="com.ithinkbest.phoneix.assistant.S1Activity">
 
     <TextView
+        android:id="@+id/txtQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/s1_01"
