@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.Arrays;
@@ -20,6 +21,7 @@ public class S1Activity extends ActionBarActivity {
 
 
     TextView txtQuestion;
+    RadioGroup radioGrp;
     RadioButton radioBtn1;
     RadioButton radioBtn2;
     RadioButton radioBtn3;
@@ -53,13 +55,15 @@ public class S1Activity extends ActionBarActivity {
             {"3. 請您自我評估,使用Anroid手機的熟練度?", "還很陌生", "一般夠用", "非常熟練"}
 
     };
-    static int[] answer={-1,-1,-1};
+    static int[] answer={-1,-1,-1,-1};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_s1);
         txtQuestion = (TextView) findViewById(R.id.txtQuestion);
+        radioGrp = (RadioGroup) findViewById(R.id.radioGrp);
+
         radioBtn1 = (RadioButton) findViewById(R.id.radioBtn1);
         radioBtn2 = (RadioButton) findViewById(R.id.radioBtn2);
         radioBtn3 = (RadioButton) findViewById(R.id.radioBtn3);
@@ -104,6 +108,44 @@ public class S1Activity extends ActionBarActivity {
         } else {
             btnNext.setEnabled(true);
         }
+
+//        radioBtn1.setChecked(false);
+//        radioBtn2.setChecked(false);
+//        radioBtn3.setChecked(false);
+
+        if (answer[questionNumber]==-1) {
+            radioBtn1.setChecked(false);
+        radioBtn2.setChecked(false);
+        radioBtn3.setChecked(false);
+          //  radioGrp.setch(null);
+            Log.d(LOG_TAG,"SHOULD BE NONE CHECKED questionNumber="+questionNumber+" answer[questionNumber]="+answer[questionNumber]);
+
+        }else{
+            radioBtn1.setChecked(true);
+            radioBtn2.setChecked(true);
+            radioBtn3.setChecked(true);
+            Log.d(LOG_TAG,"questionNumber="+questionNumber+" answer[questionNumber]="+answer[questionNumber]);
+            switch (answer[questionNumber]){
+                case 1:
+//                    radioBtn1.setChecked(true); //wrong usage
+                    radioGrp.check(radioBtn1.getId());
+                    Log.d(LOG_TAG,"CASE 1 setChecked");
+
+                    break;
+                case 2:
+//                    radioBtn2.setChecked(true);
+                    radioGrp.check(radioBtn2.getId());
+                    Log.d(LOG_TAG,"CASE 2 setChecked");
+                    break;
+                case 3:
+//                    radioBtn3.setChecked(true);
+                    radioGrp.check(radioBtn3.getId());
+                    Log.d(LOG_TAG,"CASE 3 setChecked");
+                    break;
+
+            }
+        }
+
     }
 
     public void onPrevButtonClicked(View view) {
