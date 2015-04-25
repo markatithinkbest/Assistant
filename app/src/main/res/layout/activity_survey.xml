@@ -26,7 +26,7 @@
         android:onClick="onClickBtn2"
         android:text="@string/survey2"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/btn3"
@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         android:onClick="onClickBtn3"
         android:text="@string/survey3"
+        android:visibility="invisible"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>

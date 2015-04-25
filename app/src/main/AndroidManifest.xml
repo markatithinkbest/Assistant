@@ -43,6 +43,10 @@
             android:name=".SurveyActivity"
             android:label="@string/title_activity_survey" >
         </activity>
+        <activity
+            android:name=".S1Activity"
+            android:label="@string/title_activity_s1" >
+        </activity>
     </application>
 
 </manifest>

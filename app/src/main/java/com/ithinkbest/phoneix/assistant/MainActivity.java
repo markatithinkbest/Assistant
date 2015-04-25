@@ -1,8 +1,8 @@
 package com.ithinkbest.phoneix.assistant;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,7 +54,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onClickBtn2(View view) {
-        Toast.makeText(this, "...DOING", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "...DOING", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, SurveyActivity.class);
+
+        startActivity(intent);
     }
 
     public void onClickBtn3(View view) {

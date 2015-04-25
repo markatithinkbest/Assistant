@@ -29,7 +29,9 @@
     <string name="title_activity_city_list">縣市別</string>
     <string name="title_activity_cmp_rpt1">公司登記現有家數及實收資本額</string>
     <string name="title_activity_survey">SurveyActivity</string>
-    <string name="survey1">早午餐</string>
+    <string name="survey1">問卷1: 關於這支APP</string>
     <string name="survey2">...</string>
     <string name="survey3">...</string>
+    <string name="title_activity_s1">S1Activity</string>
+    <string name="s1_01">1. 操作這支APP您覺得?</string>
 </resources>
