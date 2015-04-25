@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 
 public class OpenDataActivity extends ActionBarActivity {
@@ -64,7 +63,7 @@ public class OpenDataActivity extends ActionBarActivity {
     }
     public void onClickBtn3(View view) {
         Log.d(LOG_TAG,"...btn3");
-        Toast.makeText(this,"...DOING",Toast.LENGTH_SHORT).show();
+    //    Toast.makeText(this,"...DOING",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, CmpRpt1Activity.class);
 //        EditText editText = (EditText) findViewById(R.id.edit_message);
 //        String message = editText.getText().toString();
