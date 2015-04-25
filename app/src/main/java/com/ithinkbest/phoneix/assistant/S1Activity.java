@@ -11,6 +11,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.Arrays;
+
 
 public class S1Activity extends ActionBarActivity {
     static String LOG_TAG = "MARK987 S1Activity ";
@@ -57,6 +59,7 @@ public class S1Activity extends ActionBarActivity {
             {"4. 商工行政資料開放平台的內容,對你而言?", "沒有什麼用", "可以增加常識", "有參考價值"}
 
     };
+    // WARNING: need to maintain with QUESTION_SET together
     static int[] answer = {-1, -1, -1, -1};
 
     @Override
@@ -207,17 +210,19 @@ public class S1Activity extends ActionBarActivity {
     }
     private void checkComplete(){
 
-        boolean isComplete=true;
+//        boolean isComplete=true;
         int answeredCnt=0;
-        for (int i=0;i<answer.length;i++){
+        for (int i=0;i<QUESTION_SET.length;i++){
             if (answer[i]==-1){
-                isComplete=false;
+//                isComplete=false;
 //                break;
             }else{
                 answeredCnt++;
             }
         }
-        if (isComplete){
+        Log.d(LOG_TAG, "...answer??? "+answeredCnt+"  " + Arrays.toString(answer));
+        if (answeredCnt==totalQuestion){
+            btnSubmit.setText(getString(R.string.submit));
             btnSubmit.setEnabled(true);
         }else{
             btnSubmit.setText("已作答"+answeredCnt+"題, 共"+totalQuestion+ "題");
