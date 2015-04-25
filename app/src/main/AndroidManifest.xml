@@ -39,6 +39,10 @@
             android:name=".CmpRpt1Activity"
             android:label="@string/title_activity_cmp_rpt1" >
         </activity>
+        <activity
+            android:name=".SurveyActivity"
+            android:label="@string/title_activity_survey" >
+        </activity>
     </application>
 
 </manifest>
