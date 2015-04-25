@@ -3,14 +3,13 @@ package com.ithinkbest.phoneix.assistant;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 
 public class SurveyActivity extends ActionBarActivity {
-    static String LOG_TAG = "MARK987";
+    static String LOG_TAG = "MARK987 SurveyActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,24 +40,21 @@ public class SurveyActivity extends ActionBarActivity {
     }
 
     public void onClickBtn1(View view) {
-        Log.d(LOG_TAG, "...btn1");
+//        Log.d(LOG_TAG, "...btn1");
         Intent intent = new Intent(this, S1Activity.class);
-//        EditText editText = (EditText) findViewById(R.id.edit_message);
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
 
 
 
     }
     public void onClickBtn2(View view) {
-        Log.d(LOG_TAG,"...btn2");
+//        Log.d(LOG_TAG,"...btn2");
 
 
 
     }
     public void onClickBtn3(View view) {
-        Log.d(LOG_TAG,"...btn3");
+//        Log.d(LOG_TAG,"...btn3");
 
     }
 }

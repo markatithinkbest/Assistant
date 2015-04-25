@@ -27,24 +27,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/s1_01a"
             android:onClick="onRadioButtonClicked"
+            android:text="@string/s1_01a"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RadioButton
             android:id="@+id/radioBtn2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/s1_01b"
             android:onClick="onRadioButtonClicked"
+            android:text="@string/s1_01b"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RadioButton
             android:id="@+id/radioBtn3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/s1_01c"
             android:onClick="onRadioButtonClicked"
+            android:text="@string/s1_01c"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </RadioGroup>
@@ -52,7 +52,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:orientation="horizontal">
 
@@ -71,9 +71,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/next"
             android:onClick="onNextButtonClicked"
+            android:text="@string/next"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onSubmitButtonClicked"
+        android:text="@string/submit"
+android:enabled="false"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 </LinearLayout>

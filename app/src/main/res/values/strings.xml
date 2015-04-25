@@ -40,5 +40,6 @@
     <string name="s1_01c">很困難</string>
     <string name="prev">上一題</string>
     <string name="next">下一題</string>
+    <string name="submit">提交送出</string>
 
 </resources>

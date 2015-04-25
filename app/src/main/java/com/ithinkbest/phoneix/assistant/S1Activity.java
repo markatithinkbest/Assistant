@@ -11,11 +11,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import java.util.Arrays;
-
 
 public class S1Activity extends ActionBarActivity {
-    static String LOG_TAG = "MARK987";
+    static String LOG_TAG = "MARK987 S1Activity ";
     static int questionNumber = 0;
     static int totalQuestion = 4;
     static int lastChecked = -1;
@@ -28,6 +26,8 @@ public class S1Activity extends ActionBarActivity {
     RadioButton radioBtn3;
     Button btnPrev;
     Button btnNext;
+    Button btnSubmit;
+
 
 
     static final String[] QUESTION = new String[]{
@@ -71,6 +71,7 @@ public class S1Activity extends ActionBarActivity {
         radioBtn3 = (RadioButton) findViewById(R.id.radioBtn3);
         btnPrev = (Button) findViewById(R.id.btnPrev);
         btnNext = (Button) findViewById(R.id.btnNext);
+        btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
         ShowQuestion();
     }
@@ -147,7 +148,7 @@ public class S1Activity extends ActionBarActivity {
     }
 
     private void ShowQuestion() {
-
+        checkComplete();
         txtQuestion.setText(QUESTION_SET[questionNumber][0]);
         radioBtn1.setText(QUESTION_SET[questionNumber][1]);
         radioBtn2.setText(QUESTION_SET[questionNumber][2]);
@@ -155,7 +156,10 @@ public class S1Activity extends ActionBarActivity {
 
         handleButtons();
     }
+    public void onSubmitButtonClicked(View view) {
+        Log.d(LOG_TAG,"...SUBMIT");
 
+    }
 
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
@@ -168,9 +172,9 @@ public class S1Activity extends ActionBarActivity {
                     answer[questionNumber] = 1;
 
                     //issue#1
-                    lastChecked = answer[questionNumber];
-                    Log.d(LOG_TAG, "...lastChecked= " + lastChecked);
-                    Log.d(LOG_TAG, "...radioButton1 " + Arrays.toString(answer));
+//                    lastChecked = answer[questionNumber];
+//                    Log.d(LOG_TAG, "...lastChecked= " + lastChecked);
+//                    Log.d(LOG_TAG, "...radioButton1 " + Arrays.toString(answer));
 
                 }
                 // Pirates are the best
@@ -180,9 +184,9 @@ public class S1Activity extends ActionBarActivity {
                     answer[questionNumber] = 2;
 
                     //issue#1
-                    lastChecked = answer[questionNumber];
-                    Log.d(LOG_TAG, "...lastChecked= " + lastChecked);
-                    Log.d(LOG_TAG, "...radioButton2 " + Arrays.toString(answer));
+//                    lastChecked = answer[questionNumber];
+//                    Log.d(LOG_TAG, "...lastChecked= " + lastChecked);
+//                    Log.d(LOG_TAG, "...radioButton2 " + Arrays.toString(answer));
 
                 }
                 // Ninjas rule
@@ -192,12 +196,31 @@ public class S1Activity extends ActionBarActivity {
                     answer[questionNumber] = 3;
 
                     //issue#1
-                    lastChecked = answer[questionNumber];
-                    Log.d(LOG_TAG, "...lastChecked= " + lastChecked);
-                    Log.d(LOG_TAG, "...radioButton3 " + Arrays.toString(answer));
+//                    lastChecked = answer[questionNumber];
+//                    Log.d(LOG_TAG, "...lastChecked= " + lastChecked);
+//                    Log.d(LOG_TAG, "...radioButton3 " + Arrays.toString(answer));
                 }
                 // Ninjas rule
                 break;
+        }
+        checkComplete();
+    }
+    private void checkComplete(){
+
+        boolean isComplete=true;
+        int answeredCnt=0;
+        for (int i=0;i<answer.length;i++){
+            if (answer[i]==-1){
+                isComplete=false;
+//                break;
+            }else{
+                answeredCnt++;
+            }
+        }
+        if (isComplete){
+            btnSubmit.setEnabled(true);
+        }else{
+            btnSubmit.setText("已作答"+answeredCnt+"題, 共"+totalQuestion+ "題");
         }
     }
 }
