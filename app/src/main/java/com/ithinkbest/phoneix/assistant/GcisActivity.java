@@ -8,7 +8,6 @@ import android.webkit.WebView;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,49 +23,28 @@ public class GcisActivity extends ActionBarActivity {
         setContentView(R.layout.activity_cmp_rpt1);
         setupWebView();
 
-//         webView = (WebView) findViewById(R.id.webView);
-//        webView.setHorizontalScrollBarEnabled(true);
-//        webView.setVerticalScrollBarEnabled(true);
-//        webView.getSettings().setUseWideViewPort(true);
-//        //Finally this one worked, show Chinese properly!
-//        webView.loadData(getHtml(), "text/html; charset=utf-8", "UTF-8");
     }
 
     String getHtml() {
+        String assetsFilename="gcis.csv";
         StringBuilder result = new StringBuilder();
-        //  result.append("<head><meta name='viewport' content='target-densityDpi=device-dpi'/></head>");
-        String s = "<head><meta name=viewport content=target-density dpi=medium-dpi, width=device-width/></head>";
+         String s = "<head><meta name=viewport content=target-density dpi=medium-dpi, width=device-width/></head>";
         result.append(s);
-        //      result.append("中文是必要的xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy111111234567566576876878798");
-//        result.append("<table border='1' cellpadding=\"0\" cellspacing=\"0\">");
-//        for (int row=0;row<52;row++){
-//            result.append("<tr>");
-//            for (int col=0;col<22;col++){
-//                result.append("<td>&nbsp;"+col+"yyyyy&nbsp;</td>");
-//            }
-//            result.append("</tr>");
-//
-//        }
-//        result.append("</table>");
-//        result.append("中文是必要的xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy111111234567566576876878798");
 
-//http://data.gov.tw/comment/3137#comment-3137
-        String title = "公司登記現有家數及實收資本額－按行業別及縣市別";
-        //  String addr="https://data.gcis.nat.gov.tw/od/detail;jsessionid=093021B3078069C877EC3108A567D65B?oid=ACA82CEE-1C9D-47F8-9E5F-1DE39D5EEAF9";
-        String addr = "http://data.gov.tw/";
-
-        String date = "2015年03月";
+        String title = "經濟部商業司公開資料供應清單";
+        String addr ="http://data.gcis.nat.gov.tw/od/datacategory";
+        String date = "2015年04月26日";
 
         result.append("<h3>" + title + "</h3>");
-        result.append("原始檔案下載月份: " + date + "<br>");
-        result.append("資料來源: <a href='" + addr + "'> 政府資料開放平臺</a>" + "<br><br>");
+        result.append("原始檔案製表日期: " + date + "<br>");
+        result.append("資料來源: <a href='" + addr + "'> 商工行政資料開放平台</a>" + "<br><br>");
 
 
         String next[] = {};
         List<String[]> list = new ArrayList<String[]>();
 
         try {
-            CSVReader reader = new CSVReader(new InputStreamReader(getAssets().open("cmpRpt1.csv")));
+            CSVReader reader = new CSVReader(new InputStreamReader(getAssets().open(assetsFilename)));
             while (true) {
                 next = reader.readNext();
                 if (next != null) {
@@ -89,56 +67,56 @@ public class GcisActivity extends ActionBarActivity {
                 //  Log.d(LOG_TAG,list.get(i)[j]);
                 String str = list.get(i)[j].toString().replace(" ", "&nbsp;");
 
-                try {
-//                    if (j == 1) {
+//                try {
+////                    if (j == 1) {
+////                        Integer x = Integer.parseInt(str);
+////                        DecimalFormat myFormatter = new DecimalFormat("#,###");
+////                        str = myFormatter.format(x);
+////                    }
+////                    if (j==2){
+////                        Double x = Double.parseDouble(str);
+////                        DecimalFormat myFormatter = new DecimalFormat("#,###.00");
+////                        str = myFormatter.format(x);
+////                    }
+//
+////                    switch (j){
+////                        case 1:
+////                        case 3:
+////                            Integer x = Integer.parseInt(str);
+////                            DecimalFormat myFormatter = new DecimalFormat("#,###");
+////                            str = myFormatter.format(x);
+////                            break;
+////                        case 2:
+////                            Double y = Double.parseDouble(str);
+////                            DecimalFormat myFormatter2 = new DecimalFormat("#,###.00");
+////                            str = myFormatter2.format(y);
+////                            break;
+////
+////                    }
+//
+//                    if (j > 0 && 1 == j % 2) {
 //                        Integer x = Integer.parseInt(str);
 //                        DecimalFormat myFormatter = new DecimalFormat("#,###");
 //                        str = myFormatter.format(x);
 //                    }
-//                    if (j==2){
+//                    if (j > 0 && 0 == j % 2) {
 //                        Double x = Double.parseDouble(str);
 //                        DecimalFormat myFormatter = new DecimalFormat("#,###.00");
 //                        str = myFormatter.format(x);
 //                    }
-
-//                    switch (j){
-//                        case 1:
-//                        case 3:
-//                            Integer x = Integer.parseInt(str);
-//                            DecimalFormat myFormatter = new DecimalFormat("#,###");
-//                            str = myFormatter.format(x);
-//                            break;
-//                        case 2:
-//                            Double y = Double.parseDouble(str);
-//                            DecimalFormat myFormatter2 = new DecimalFormat("#,###.00");
-//                            str = myFormatter2.format(y);
-//                            break;
 //
-//                    }
-
-                    if (j > 0 && 1 == j % 2) {
-                        Integer x = Integer.parseInt(str);
-                        DecimalFormat myFormatter = new DecimalFormat("#,###");
-                        str = myFormatter.format(x);
-                    }
-                    if (j > 0 && 0 == j % 2) {
-                        Double x = Double.parseDouble(str);
-                        DecimalFormat myFormatter = new DecimalFormat("#,###.00");
-                        str = myFormatter.format(x);
-                    }
-
-                } catch (Exception e) {
-                    // not to
-                }
+//                } catch (Exception e) {
+//                    // not to
+//                }
 //                String str=list.get(i)[j].toString().replace(" ","_");
                 if (i == 0) { // here get bold effect
-                    result.append("<th   align='center' nowrap=\"nowrap\">&nbsp;" + str + "&nbsp;</th>");
+                    result.append("<th   align='center' nowrap='nowrap'>&nbsp;" + str + "&nbsp;</th>");
                 } else {
                     if (j == 0) {
-                        result.append("<th   align='right' nowrap=\"nowrap\">&nbsp;" + str + "&nbsp;</th>");
+                        result.append("<th   align='right' nowrap='nowrap'>&nbsp;" + str + "&nbsp;</th>");
 
                     } else {
-                        result.append("<td   align='right' nowrap=\"nowrap\">&nbsp;" + str + "&nbsp;</td>");
+                        result.append("<td   align='left' nowrap='nowrap'>&nbsp;" + str + "&nbsp;</td>");
                     }
                 }
             }

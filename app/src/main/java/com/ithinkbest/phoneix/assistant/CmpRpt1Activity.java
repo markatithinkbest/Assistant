@@ -53,13 +53,13 @@ public class CmpRpt1Activity extends ActionBarActivity {
 //http://data.gov.tw/comment/3137#comment-3137
         String title = "公司登記現有家數及實收資本額－按行業別及縣市別";
         //  String addr="https://data.gcis.nat.gov.tw/od/detail;jsessionid=093021B3078069C877EC3108A567D65B?oid=ACA82CEE-1C9D-47F8-9E5F-1DE39D5EEAF9";
-        String addr = "http://data.gov.tw/";
-
+//        String addr = "http://data.gov.tw/";
+        String addr ="http://data.gcis.nat.gov.tw/od/datacategory";
         String date = "2015年03月";
 
         result.append("<h3>" + title + "</h3>");
         result.append("原始檔案下載月份: " + date + "<br>");
-        result.append("資料來源: <a href='" + addr + "'> 政府資料開放平臺</a>" + "<br><br>");
+        result.append("資料來源: <a href='" + addr + "'> 商工行政資料開放平台</a>" + "<br><br>");
 
 
         String next[] = {};

@@ -42,7 +42,7 @@ public class OpenDataActivity extends ActionBarActivity {
 
     public void onClickBtn1(View view) {
         Log.d(LOG_TAG,"...btn1");
-        Intent intent = new Intent(this, BusinessCategoryActivity.class);
+        Intent intent = new Intent(this, GcisActivity.class);
 //        EditText editText = (EditText) findViewById(R.id.edit_message);
 //        String message = editText.getText().toString();
 //        intent.putExtra(EXTRA_MESSAGE, message);

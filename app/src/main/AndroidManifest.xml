@@ -17,8 +17,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BusinessCategoryActivity"
-            android:label="@string/title_activity_business_category" >
+            android:name=".GcisActivity"
+            android:label="@string/title_activity_gcis" >
         </activity>
         <activity
             android:name=".OpenDataActivity"

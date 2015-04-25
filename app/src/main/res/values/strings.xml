@@ -22,12 +22,13 @@
     <string name="btn3">關於這個專案</string>
     <string name="btn4">最近提的需求</string>
     <string name="title_activity_business_category">行業別</string>
-    <string name="open1">行業別</string>
+    <string name="title_activity_gcis">經濟部商業司公開資料供應清單</string>
+    <string name="open1">經濟部商業司公開資料供應清單</string>
     <string name="open2">縣市別</string>
-    <string name="open3">公司登記現有家數及實收資本額</string>
+    <string name="open3">公司登記現有家數及實收資本額－按行業別及縣市別</string>
     <string name="title_activity_open_data">查看政府資料開放</string>
     <string name="title_activity_city_list">縣市別</string>
-    <string name="title_activity_cmp_rpt1">公司登記現有家數及實收資本額</string>
+    <string name="title_activity_cmp_rpt1">公司登記現有家數及實收資本額－按行業別及縣市別</string>
     <string name="title_activity_survey">SurveyActivity</string>
     <string name="survey1">問卷1: 關於這支APP</string>
     <string name="survey2">...</string>
