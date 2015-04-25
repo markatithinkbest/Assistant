@@ -17,7 +17,8 @@ import java.util.Arrays;
 public class S1Activity extends ActionBarActivity {
     static String LOG_TAG = "MARK987";
     static int questionNumber = 0;
-    static int totalQuestion = 3;
+    static int totalQuestion = 4;
+    static int lastChecked = -1;
 
 
     TextView txtQuestion;
@@ -52,7 +53,8 @@ public class S1Activity extends ActionBarActivity {
 
             {"1. 操作這支APP,您個人覺得?", "容易", "有點困難", "很困難"},
             {"2. 您使用Anroid手機,已經多久了?", "三個月以內", "三個月到一年左右", "一年以上"},
-            {"3. 請您自我評估,使用Anroid手機的熟練度?", "還很陌生", "一般夠用", "非常熟練"}
+            {"3. 請您自我評估,使用Anroid手機的熟練度?", "還很陌生", "一般夠用", "非常熟練"},
+            {"4. 商工行政資料開放平台的內容,對你而言?", "沒有什麼用", "可以增加常識", "有參考價值"}
 
     };
     static int[] answer = {-1, -1, -1, -1};
@@ -97,46 +99,38 @@ public class S1Activity extends ActionBarActivity {
     }
 
     private void handleButtons() {
+        // when first question, no prev
         if (questionNumber == 0) {
             btnPrev.setEnabled(false);
         } else {
             btnPrev.setEnabled(true);
         }
 
+        // when last question, no next
         if (questionNumber == totalQuestion - 1) {
             btnNext.setEnabled(false);
         } else {
             btnNext.setEnabled(true);
         }
 
-        if (answer[questionNumber] == -1) {
-            radioBtn1.setChecked(false);
-            radioBtn2.setChecked(false);
-            radioBtn3.setChecked(false);
-            Log.d(LOG_TAG, "SHOULD BE NONE CHECKED questionNumber=" + questionNumber + " answer[questionNumber]=" + answer[questionNumber]);
 
+        if (answer[questionNumber] == -1) {
+            // when entering new or unanswered question,
+            radioGrp.clearCheck();
         } else {
-            radioBtn1.setChecked(true);
-            radioBtn2.setChecked(true);
-            radioBtn3.setChecked(true);
-            Log.d(LOG_TAG, "questionNumber=" + questionNumber + " answer[questionNumber]=" + answer[questionNumber]);
+            // when revisit answered question
             switch (answer[questionNumber]) {
                 case 1:
                     radioGrp.check(radioBtn1.getId());
-                    Log.d(LOG_TAG, "CASE 1 setChecked");
                     break;
                 case 2:
                     radioGrp.check(radioBtn2.getId());
-                    Log.d(LOG_TAG, "CASE 2 setChecked");
                     break;
                 case 3:
                     radioGrp.check(radioBtn3.getId());
-                    Log.d(LOG_TAG, "CASE 3 setChecked");
                     break;
-
             }
         }
-
     }
 
     public void onPrevButtonClicked(View view) {
@@ -153,27 +147,13 @@ public class S1Activity extends ActionBarActivity {
     }
 
     private void ShowQuestion() {
-        handleButtons();
+
         txtQuestion.setText(QUESTION_SET[questionNumber][0]);
         radioBtn1.setText(QUESTION_SET[questionNumber][1]);
         radioBtn2.setText(QUESTION_SET[questionNumber][2]);
         radioBtn3.setText(QUESTION_SET[questionNumber][3]);
 
-        switch (questionNumber) {
-            case 2:
-//                txtQuestion.setText(QUESTION[2]);
-//                radioBtn1.setText("三個月以內");
-//                radioBtn2.setText("三個月到一年左右");
-//                radioBtn3.setText("一年以上");
-                break;
-            case 3:
-//                txtQuestion.setText(QUESTION[3]);
-//                radioBtn1.setText("還很陌生");
-//                radioBtn2.setText("一般夠用");
-//                radioBtn3.setText("非常熟練");
-                break;
-
-        }
+        handleButtons();
     }
 
 
@@ -186,6 +166,10 @@ public class S1Activity extends ActionBarActivity {
             case R.id.radioBtn1:
                 if (checked) {
                     answer[questionNumber] = 1;
+
+                    //issue#1
+                    lastChecked = answer[questionNumber];
+                    Log.d(LOG_TAG, "...lastChecked= " + lastChecked);
                     Log.d(LOG_TAG, "...radioButton1 " + Arrays.toString(answer));
 
                 }
@@ -194,6 +178,10 @@ public class S1Activity extends ActionBarActivity {
             case R.id.radioBtn2:
                 if (checked) {
                     answer[questionNumber] = 2;
+
+                    //issue#1
+                    lastChecked = answer[questionNumber];
+                    Log.d(LOG_TAG, "...lastChecked= " + lastChecked);
                     Log.d(LOG_TAG, "...radioButton2 " + Arrays.toString(answer));
 
                 }
@@ -202,6 +190,10 @@ public class S1Activity extends ActionBarActivity {
             case R.id.radioBtn3:
                 if (checked) {
                     answer[questionNumber] = 3;
+
+                    //issue#1
+                    lastChecked = answer[questionNumber];
+                    Log.d(LOG_TAG, "...lastChecked= " + lastChecked);
                     Log.d(LOG_TAG, "...radioButton3 " + Arrays.toString(answer));
                 }
                 // Ninjas rule
