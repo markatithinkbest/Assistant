@@ -6,8 +6,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class CmpRpt1Activity extends ActionBarActivity {
+    static String LOG_TAG = "MARK987";
+
     WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +35,51 @@ public class CmpRpt1Activity extends ActionBarActivity {
         String s="<head><meta name=viewport content=target-density dpi=medium-dpi, width=device-width/></head>";
         result.append(s);
         result.append("中文是必要的xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy111111234567566576876878798");
-        result.append("<table border='1' cellpadding=\"0\" cellspacing=\"0\"");
-        for (int row=0;row<52;row++){
+//        result.append("<table border='1' cellpadding=\"0\" cellspacing=\"0\">");
+//        for (int row=0;row<52;row++){
+//            result.append("<tr>");
+//            for (int col=0;col<22;col++){
+//                result.append("<td>&nbsp;"+col+"yyyyy&nbsp;</td>");
+//            }
+//            result.append("</tr>");
+//
+//        }
+//        result.append("</table>");
+//        result.append("中文是必要的xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy111111234567566576876878798");
+
+        String next[] = {};
+        List<String[]> list = new ArrayList<String[]>();
+
+        try {
+            CSVReader reader = new CSVReader(new InputStreamReader(getAssets().open("cmpRpt1.csv")));
+            while(true) {
+                next = reader.readNext();
+                if(next != null) {
+
+
+                    list.add(next);
+                } else {
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        result.append("<table border='1' cellpadding='0' cellspacing='0'>");
+
+        for (int i=0;i<list.size();i++){
             result.append("<tr>");
-            for (int col=0;col<22;col++){
-                result.append("<td>&nbsp;"+col+"yyyyy&nbsp;</td>");
+            for (int j=0;j<list.get(i).length;j++){
+              //  Log.d(LOG_TAG,list.get(i)[j]);
+                String str=list.get(i)[j].toString().replace(" ","&nbsp;");
+//                String str=list.get(i)[j].toString().replace(" ","_");
+
+                result.append("<td   align='right' nowrap=\"nowrap\">&nbsp;"+str+"&nbsp;</td>");
             }
             result.append("</tr>");
-
         }
         result.append("</table>");
-        result.append("中文是必要的xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy111111234567566576876878798");
         return result.toString();
 
     }
