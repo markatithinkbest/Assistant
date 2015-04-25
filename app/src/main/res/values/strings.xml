@@ -27,4 +27,5 @@
     <string name="open3">公司登記現有家數及實收資本額</string>
     <string name="title_activity_open_data">資料開放</string>
     <string name="title_activity_city_list">縣市別</string>
+    <string name="title_activity_cmp_rpt1">CmpRpt1Activity</string>
 </resources>

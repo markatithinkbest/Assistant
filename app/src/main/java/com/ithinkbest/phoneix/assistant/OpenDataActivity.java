@@ -65,6 +65,11 @@ public class OpenDataActivity extends ActionBarActivity {
     public void onClickBtn3(View view) {
         Log.d(LOG_TAG,"...btn3");
         Toast.makeText(this,"...DOING",Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, CmpRpt1Activity.class);
+//        EditText editText = (EditText) findViewById(R.id.edit_message);
+//        String message = editText.getText().toString();
+//        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
     }
 
 }
