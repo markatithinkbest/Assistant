@@ -55,7 +55,7 @@ public class S1Activity extends ActionBarActivity {
             {"3. 請您自我評估,使用Anroid手機的熟練度?", "還很陌生", "一般夠用", "非常熟練"}
 
     };
-    static int[] answer={-1,-1,-1,-1};
+    static int[] answer = {-1, -1, -1, -1};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +96,7 @@ public class S1Activity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void handleButtonsEnable() {
+    private void handleButtons() {
         if (questionNumber == 0) {
             btnPrev.setEnabled(false);
         } else {
@@ -109,38 +109,29 @@ public class S1Activity extends ActionBarActivity {
             btnNext.setEnabled(true);
         }
 
-//        radioBtn1.setChecked(false);
-//        radioBtn2.setChecked(false);
-//        radioBtn3.setChecked(false);
-
-        if (answer[questionNumber]==-1) {
+        if (answer[questionNumber] == -1) {
             radioBtn1.setChecked(false);
-        radioBtn2.setChecked(false);
-        radioBtn3.setChecked(false);
-          //  radioGrp.setch(null);
-            Log.d(LOG_TAG,"SHOULD BE NONE CHECKED questionNumber="+questionNumber+" answer[questionNumber]="+answer[questionNumber]);
+            radioBtn2.setChecked(false);
+            radioBtn3.setChecked(false);
+            Log.d(LOG_TAG, "SHOULD BE NONE CHECKED questionNumber=" + questionNumber + " answer[questionNumber]=" + answer[questionNumber]);
 
-        }else{
+        } else {
             radioBtn1.setChecked(true);
             radioBtn2.setChecked(true);
             radioBtn3.setChecked(true);
-            Log.d(LOG_TAG,"questionNumber="+questionNumber+" answer[questionNumber]="+answer[questionNumber]);
-            switch (answer[questionNumber]){
+            Log.d(LOG_TAG, "questionNumber=" + questionNumber + " answer[questionNumber]=" + answer[questionNumber]);
+            switch (answer[questionNumber]) {
                 case 1:
-//                    radioBtn1.setChecked(true); //wrong usage
                     radioGrp.check(radioBtn1.getId());
-                    Log.d(LOG_TAG,"CASE 1 setChecked");
-
+                    Log.d(LOG_TAG, "CASE 1 setChecked");
                     break;
                 case 2:
-//                    radioBtn2.setChecked(true);
                     radioGrp.check(radioBtn2.getId());
-                    Log.d(LOG_TAG,"CASE 2 setChecked");
+                    Log.d(LOG_TAG, "CASE 2 setChecked");
                     break;
                 case 3:
-//                    radioBtn3.setChecked(true);
                     radioGrp.check(radioBtn3.getId());
-                    Log.d(LOG_TAG,"CASE 3 setChecked");
+                    Log.d(LOG_TAG, "CASE 3 setChecked");
                     break;
 
             }
@@ -162,7 +153,7 @@ public class S1Activity extends ActionBarActivity {
     }
 
     private void ShowQuestion() {
-        handleButtonsEnable();
+        handleButtons();
         txtQuestion.setText(QUESTION_SET[questionNumber][0]);
         radioBtn1.setText(QUESTION_SET[questionNumber][1]);
         radioBtn2.setText(QUESTION_SET[questionNumber][2]);
@@ -194,24 +185,24 @@ public class S1Activity extends ActionBarActivity {
         switch (view.getId()) {
             case R.id.radioBtn1:
                 if (checked) {
-                    answer[questionNumber]=1;
-                    Log.d(LOG_TAG, "...radioButton1 "+ Arrays.toString(answer));
+                    answer[questionNumber] = 1;
+                    Log.d(LOG_TAG, "...radioButton1 " + Arrays.toString(answer));
 
                 }
                 // Pirates are the best
                 break;
             case R.id.radioBtn2:
                 if (checked) {
-                    answer[questionNumber]=2;
-                    Log.d(LOG_TAG, "...radioButton2 "+ Arrays.toString(answer));
+                    answer[questionNumber] = 2;
+                    Log.d(LOG_TAG, "...radioButton2 " + Arrays.toString(answer));
 
                 }
                 // Ninjas rule
                 break;
             case R.id.radioBtn3:
                 if (checked) {
-                    answer[questionNumber]=3;
-                    Log.d(LOG_TAG, "...radioButton3 "+ Arrays.toString(answer));
+                    answer[questionNumber] = 3;
+                    Log.d(LOG_TAG, "...radioButton3 " + Arrays.toString(answer));
                 }
                 // Ninjas rule
                 break;
