@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant;
+package com.ithinkbest.phoneix.assistant.survey;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.ithinkbest.phoneix.assistant.R;
 import com.ithinkbest.phoneix.assistant.survey.Survey001Activity;
 
 

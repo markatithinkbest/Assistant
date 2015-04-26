@@ -1,9 +1,11 @@
-package com.ithinkbest.phoneix.assistant;
+package com.ithinkbest.phoneix.assistant.survey;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.ithinkbest.phoneix.assistant.R;
 
 
 public class CheckSurveyResult001Activity extends ActionBarActivity {
