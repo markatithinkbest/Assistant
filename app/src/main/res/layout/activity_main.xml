@@ -12,14 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/btn1"
+        android:text="@string/mainBtn1"
         android:onClick="onClickBtn1"
         android:id="@+id/btn1" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn2"
+        android:text="@string/mainBtn2"
         android:onClick="onClickBtn2"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/btn2" />
@@ -29,8 +29,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/btn3"
+        android:text="@string/MainBtn3"
         android:onClick="onClickBtn3"
         android:id="@+id/btn3" />
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/mainBtn4"
+        android:onClick="onClickBtn4"
+        android:id="@+id/btn4" />
 
 </LinearLayout>

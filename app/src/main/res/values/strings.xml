@@ -17,9 +17,10 @@
 
     <string name="action_example">Example action</string>
 
-    <string name="btn1">查看政府資料開放</string>
-    <string name="btn2">學員問卷調查</string>
-    <string name="btn3">關於這個專案</string>
+    <string name="mainBtn1">查看政府資料開放</string>
+    <string name="mainBtn2">學員問卷調查</string>
+    <string name="MainBtn3">查看學員問卷調查統計</string>
+    <string name="MainBtn4">關於這個專案</string>
     <string name="btn4">最近提的需求</string>
     <string name="title_activity_business_category">行業別</string>
     <string name="title_activity_gcis">經濟部商業司公開資料供應清單</string>
