@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant;
+package com.ithinkbest.phoneix.assistant.gcm;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.ithinkbest.phoneix.assistant.R;
 
 
 public class ToGooglePlayActivity extends Activity {

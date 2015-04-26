@@ -59,11 +59,11 @@
             android:label="@string/title_activity_s1" >
         </activity>
         <activity
-            android:name=".ToGooglePlayActivity"
+            android:name=".gcm.ToGooglePlayActivity"
             android:label="ToGooglePlayActivity" >
         </activity>
         <activity
-            android:name=".ToGcmActivity"
+            android:name=".gcm.ToGcmActivity"
             android:label="ToGcmActivity" >
         </activity>
 

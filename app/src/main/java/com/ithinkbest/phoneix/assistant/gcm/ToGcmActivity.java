@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant;
+package com.ithinkbest.phoneix.assistant.gcm;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import com.ithinkbest.phoneix.assistant.MainActivity;
+import com.ithinkbest.phoneix.assistant.R;
 
 
 public class ToGcmActivity extends Activity {
