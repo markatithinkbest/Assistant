@@ -30,7 +30,11 @@ public class MainActivity extends ActionBarActivity {
     static String LOG_TAG = "MARK987 MainActivity";
 
     // --- GCM ---
-    String PROJECT_NUMBER = "538682377549";// Project ID: taipei-ok Project Number: 538682377549
+   // String PROJECT_NUMBER = "538682377549";// Project ID: taipei-ok Project Number: 538682377549
+
+//    Phoneix Assistant, oops, typo of phoenix
+//    Project ID: turnkey-env-92723 Project Number: 525555782914
+    String PROJECT_NUMBER = "525555782914";
     static String regid = null;
     GoogleCloudMessaging gcm;
 
@@ -42,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getRegId();
+      //  getRegId();
     }
 
 
@@ -95,10 +99,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
+    // === GCM Util === start
     public void getRegId() {
         new AsyncTask<Void, Void, String>() {
-
-
             @Override
             protected String doInBackground(Void... params) {
                 String msg = "";
@@ -138,7 +141,9 @@ public class MainActivity extends ActionBarActivity {
         StringBuilder builder = new StringBuilder();
         HttpClient client = new DefaultHttpClient();
 //        HttpGet httpGet = new HttpGet("https://bugzilla.mozilla.org/rest/bug?assigned_to=lhenry@mozilla.com");
-        String str = "http://ithinkbest.com/taipeiokgcm/gcm_insert.php?reg_id=" + regid;
+//        String str = "http://ithinkbest.com/taipeiokgcm/gcm_insert.php?reg_id=" + regid;
+        String str = "http://ithinkbest.com/gcm/phoenix/gcm_insert.php?reg_id=" + regid;
+
 //        String str= TaipeiOkProvider.JSNXX[cat];
 
 
@@ -170,5 +175,6 @@ public class MainActivity extends ActionBarActivity {
         }
         return builder.toString();
     }
+    // === GCM Util === end
 
 }
