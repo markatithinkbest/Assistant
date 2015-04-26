@@ -31,6 +31,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Vector;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -54,11 +55,15 @@ public class MainActivity extends ActionBarActivity {
             protected String doInBackground(Void... params) {
                 String urlString = "http://www.ithinkbest.com/gcm/phoenix/get_survey.php?security_code=abc123";
                 String strData = null;
+
+                Vector<ContentValues> cVVector = null;
+
                 try {
                     InputStream inputStream = downloadUrl(urlString);//
                     strData = IOUtils.toString(inputStream);
                     Log.d(LOG_TAG, "...check raw json " + strData);
                     JSONArray jsonArray=new JSONArray(strData);
+                    cVVector = new Vector<ContentValues>(jsonArray.length());
                     JSONObject jsonObject=null;
                     for (int i=0;i<jsonArray.length();i++){
                         jsonObject=jsonArray.getJSONObject(i);
@@ -88,14 +93,14 @@ public class MainActivity extends ActionBarActivity {
                         mNewValues.put(SurveyProvider.COLUMN_ANS03, ans03);
                         mNewValues.put(SurveyProvider.COLUMN_ANS04, ans04);
                         mNewValues.put(SurveyProvider.COLUMN_ANS05, ans05);
+                        cVVector.add(mNewValues);
 
-
-                        Uri mNewUri;
-                        mNewUri = getContentResolver().insert(
-                                SurveyProvider.CONTENT_URI,   // the user dictionary content URI
-                                mNewValues                          // the values to insert
-                        );
-                        Log.d(LOG_TAG, " mNewUri="+mNewUri.getPath());
+//                        Uri mNewUri;
+//                        mNewUri = getContentResolver().insert(
+//                                SurveyProvider.CONTENT_URI,   // the user dictionary content URI
+//                                mNewValues                          // the values to insert
+//                        );
+//                        Log.d(LOG_TAG, " mNewUri="+mNewUri.getPath());
 
                     }
 
@@ -108,8 +113,23 @@ public class MainActivity extends ActionBarActivity {
                     Log.d(LOG_TAG, " ###syncDb JSONException "+e.toString());
                     e.printStackTrace();
                 }
+                if ( cVVector.size() > 0 ) {
+                    String str = null;
 
-                Log.d(LOG_TAG, "...doInBackground ...GOING TO DO CONTENT PROVIDER");
+                    //  String selection = TaipeiOkProvider.COLUMN_CERTIFICATION_CATEGORY+"=\""+ TaipeiOkProvider.CATXX[cat]+"\"" ;
+
+                    int delCnt = getContentResolver().delete(SurveyProvider.CONTENT_URI,
+                            null,
+                            null);
+                    Log.d(LOG_TAG, "del cnt= " + delCnt);
+
+
+                    ContentValues[] cvArray = new ContentValues[cVVector.size()];
+                    cVVector.toArray(cvArray);
+                    int bulkCnt = getContentResolver().bulkInsert(SurveyProvider.CONTENT_URI, cvArray);
+                    Log.d(LOG_TAG, "bulk cnt= " + bulkCnt);
+                }
+              //  Log.d(LOG_TAG, "...doInBackground ...GOING TO DO CONTENT PROVIDER");
                 return "###TODO content provider ";
             }
 

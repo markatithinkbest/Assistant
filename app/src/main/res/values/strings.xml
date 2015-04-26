@@ -43,5 +43,6 @@
     <string name="submit">提交送出</string>
     <string name="title_activity_to_gcm">GCM activity title</string>
     <string name="launch">launch</string>
+    <string name="title_activity_util">UtilActivity</string>
 
 </resources>

@@ -50,7 +50,7 @@ public class SurveyProvider extends ContentProvider {
     DatabaseHelper dbHelper = null;
 
     public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_CLOUD_ID = "servey_id";
+    public static final String COLUMN_CLOUD_ID = "cloud_id";
     public static final String COLUMN_REG_ID_CRC32 = "reg_id_crc32";
     public static final String COLUMN_QUESTION_ID = "question_id";
     public static final String COLUMN_ANS01 = "ans01";
@@ -61,7 +61,7 @@ public class SurveyProvider extends ContentProvider {
 
     static private final String DATABASE_NAME = "phoenix.db"; // YOUR DESIRED DATABASE
     static private final String TABLE_NAME = "survey"; // YOUR DESIRED TABLE
-    static private final int DATABASE_VERSION = 2; // ### need to increase when change
+    static private final int DATABASE_VERSION = 3; // ### need to increase when change
 
     static private final String COL0 = COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT";
     static private final String COL1 = COLUMN_CLOUD_ID + " INTEGER";
