@@ -11,8 +11,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import java.util.Arrays;
-
 
 public class S1Activity extends ActionBarActivity {
     static String LOG_TAG = "MARK987 S1Activity ";
@@ -220,7 +218,7 @@ public class S1Activity extends ActionBarActivity {
                 answeredCnt++;
             }
         }
-        Log.d(LOG_TAG, "...answer??? "+answeredCnt+"  " + Arrays.toString(answer));
+//        Log.d(LOG_TAG, "...answer??? "+answeredCnt+"  " + Arrays.toString(answer));
         if (answeredCnt==totalQuestion){
             btnSubmit.setText(getString(R.string.submit));
             btnSubmit.setEnabled(true);
