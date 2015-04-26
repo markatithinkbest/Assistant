@@ -1,5 +1,6 @@
 package com.ithinkbest.phoneix.assistant;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -11,12 +12,37 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 
 public class S1Activity extends ActionBarActivity {
     static String LOG_TAG = "MARK987 S1Activity ";
     static int questionNumber = 0;
-    static int totalQuestion = 4;
-    static int lastChecked = -1;
+    static int totalQuestion = 5;
+  //  static int lastChecked = -1;
+
+    // --- GCM ---
+    // String PROJECT_NUMBER = "538682377549";// Project ID: taipei-ok Project Number: 538682377549
+
+    //    Phoneix Assistant, oops, typo of phoenix
+//    Project ID: turnkey-env-92723 Project Number: 525555782914
+    String PROJECT_NUMBER = "525555782914";
+    static String regid = null;
+    GoogleCloudMessaging gcm;
+
 
 
     TextView txtQuestion;
@@ -29,36 +55,17 @@ public class S1Activity extends ActionBarActivity {
     Button btnSubmit;
 
 
-
-    static final String[] QUESTION = new String[]{
-            "000",
-            "111您使用Anroid手機,已經多久了?",
-
-            "您使用Anroid手機,已經多久了?",
-            "3. 請您自我評估使用Anroid手機的熟練度?"
-
-    };
-    //    <string name="s1_01">1. 操作這支APP您覺得?</string>
-//    <string name="s1_01a">容易</string>
-//    <string name="s1_01b">有點困難</string>
-//    <string name="s1_01c">很困難</string>
-//    radioBtn1.setText("三個月以內");
-//    radioBtn2.setText("三個月到一年左右");
-//    radioBtn3.setText("一年以上");
-//
-//    radioBtn1.setText("還很陌生");
-//    radioBtn2.setText("一般夠用");
-//    radioBtn3.setText("非常熟練");
     static final String[][] QUESTION_SET = new String[][]{
 
             {"1. 操作這支APP,您個人覺得?", "容易", "有點困難", "很困難"},
             {"2. 您使用Anroid手機,已經多久了?", "三個月以內", "三個月到一年左右", "一年以上"},
             {"3. 請您自我評估,使用Anroid手機的熟練度?", "還很陌生", "一般夠用", "非常熟練"},
-            {"4. 商工行政資料開放平台的內容,對你而言?", "沒有什麼用", "可以增加常識", "有參考價值"}
+            {"4. 商工行政資料開放平台的內容,對你而言?", "沒有什麼用", "可以增加常識", "有參考價值"},
+            {"5. 您從Google商店安裝APP,有多少次了?", "10次以內", "11至100次之間", "超過100次"}
 
     };
     // WARNING: need to maintain with QUESTION_SET together
-    static int[] answer = {-1, -1, -1, -1};
+    static int[] answer = {-1, -1, -1, -1,-1};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,6 +166,7 @@ public class S1Activity extends ActionBarActivity {
     }
     public void onSubmitButtonClicked(View view) {
         Log.d(LOG_TAG,"...SUBMIT");
+        getRegId();
 
     }
 
@@ -226,4 +234,84 @@ public class S1Activity extends ActionBarActivity {
             btnSubmit.setText("已作答"+answeredCnt+"題, 共"+totalQuestion+ "題");
         }
     }
+
+
+    // === GCM Util === start
+    public void getRegId() {
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                String msg = "";
+                try {
+                    if (gcm == null) {
+                        gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
+                    }
+                    regid = gcm.register(PROJECT_NUMBER);
+                    msg = "Device registered, registration ID=" + regid;
+                    //      Toast.makeText(getApplicationContext(), "One time only, to send registration ID to App server, "+regid,Toast.LENGTH_SHORT).show();
+                    Log.i(LOG_TAG, "... to submit survey result");
+                    Log.i(LOG_TAG, msg);
+
+                    String result=readGcmInsertResult();
+                    Log.i(LOG_TAG, "...readGcmInsertResult() "+result);
+
+
+                } catch (IOException ex) {
+                    msg = "Error :" + ex.getMessage();
+
+                }
+                return msg;
+            }
+
+            @Override
+            protected void onPostExecute(String msg) {
+
+                //
+            }
+        }.execute(null, null, null);
+    }
+
+    public String readGcmInsertResult() {
+        if (regid == null) {
+            Log.d(LOG_TAG, "regid is null");
+            return "";
+        }
+        StringBuilder builder = new StringBuilder();
+        HttpClient client = new DefaultHttpClient();
+//        HttpGet httpGet = new HttpGet("https://bugzilla.mozilla.org/rest/bug?assigned_to=lhenry@mozilla.com");
+//        String str = "http://ithinkbest.com/taipeiokgcm/gcm_insert.php?reg_id=" + regid;
+        String str = "http://ithinkbest.com/gcm/phoenix/gcm_insert.php?reg_id=" + regid;
+
+//        String str= TaipeiOkProvider.JSNXX[cat];
+
+
+        HttpGet httpGet = new HttpGet(str);
+        Log.d(LOG_TAG, "new HttpGet(str) => " + str);
+        try {
+            HttpResponse response = client.execute(httpGet);
+            StatusLine statusLine = response.getStatusLine();
+            int statusCode = statusLine.getStatusCode();
+            if (statusCode == 200) {
+                HttpEntity entity = response.getEntity();
+                InputStream content = entity.getContent();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    builder.append(line);
+                }
+            } else {
+                Log.e(LOG_TAG, "Failed to download file");
+            }
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+
+            Log.d(LOG_TAG, "Exception " + e.toString());
+
+        }
+        return builder.toString();
+    }
+    // === GCM Util === end
 }
