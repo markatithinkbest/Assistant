@@ -58,6 +58,10 @@
             android:name=".ToGooglePlayActivity"
             android:label="ToGooglePlayActivity" >
         </activity>
+        <activity
+            android:name=".ToGcmActivity"
+            android:label="ToGcmActivity" >
+        </activity>
 
 
 
