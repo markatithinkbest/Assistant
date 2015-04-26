@@ -55,7 +55,7 @@
             android:label="@string/title_activity_survey" >
         </activity>
         <activity
-            android:name=".S1Activity"
+            android:name=".survey.Survey001Activity"
             android:label="@string/title_activity_s1" >
         </activity>
         <activity
@@ -84,8 +84,12 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".UtilActivity"
-            android:label="@string/title_activity_util" >
+            android:name=".CheckSurveyResultActivity"
+            android:label="@string/title_activity_check_survey_summary" >
+        </activity>
+        <activity
+            android:name=".CheckSurveyResult001Activity"
+            android:label="@string/title_activity_check_survey_result001" >
         </activity>
     </application>
 

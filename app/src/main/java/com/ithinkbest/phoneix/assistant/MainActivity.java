@@ -207,13 +207,17 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onClickBtn3(View view) {
+        Intent intent = new Intent(this, CheckSurveyResultActivity.class);
+
+        startActivity(intent);
+    }
+    public void onClickBtn4(View view) {
 //        Log.d(LOG_TAG, "...btn3");
 //        Toast.makeText(this, "...DOING", Toast.LENGTH_SHORT).show();
         Uri uriUrl = Uri.parse("http://www.ithinkbest.com/?p=2365");
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
     }
-
 
     // === GCM Util === start
     public void getRegId() {

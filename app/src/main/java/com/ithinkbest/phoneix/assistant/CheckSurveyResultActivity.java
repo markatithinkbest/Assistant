@@ -10,12 +10,12 @@ import android.view.View;
 import com.ithinkbest.phoneix.assistant.survey.Survey001Activity;
 
 
-public class SurveyActivity extends ActionBarActivity {
+public class CheckSurveyResultActivity extends ActionBarActivity {
     static String LOG_TAG = "MARK987 SurveyActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_survey);
+        setContentView(R.layout.activity_check_survey_result);
     }
 
 

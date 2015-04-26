@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant;
+package com.ithinkbest.phoneix.assistant.survey;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.ithinkbest.phoneix.assistant.R;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -29,7 +30,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
-public class S1Activity extends ActionBarActivity {
+public class Survey001Activity extends ActionBarActivity {
     static String LOG_TAG = "MARK987 S1Activity ";
 
     //    Phoneix Assistant, oops, typo of phoenix
