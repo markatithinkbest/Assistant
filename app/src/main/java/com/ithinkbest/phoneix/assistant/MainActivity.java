@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -20,11 +21,16 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -42,36 +48,101 @@ public class MainActivity extends ActionBarActivity {
 
 
 
+    public void syncDb() {
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                String urlString = "http://www.ithinkbest.com/gcm/phoenix/get_survey.php?security_code=abc123";
+                String strData = null;
+                try {
+                    InputStream inputStream = downloadUrl(urlString);//
+                    strData = IOUtils.toString(inputStream);
+                    Log.d(LOG_TAG, "...check raw json " + strData);
+                    JSONArray jsonArray=new JSONArray(strData);
+                    JSONObject jsonObject=null;
+                    for (int i=0;i<jsonArray.length();i++){
+                        jsonObject=jsonArray.getJSONObject(i);
+                        //cloud_id":"92","reg_id_crc32":"2741685047","question_id":"","ans01":"","ans02":"","ans03":"","ans04":"","an
+                        String cloud_id= jsonObject.getString(SurveyProvider.COLUMN_CLOUD_ID);
+                        int int_cloud_id=Integer.parseInt(cloud_id);
+                        String reg_id_crc32= jsonObject.getString(SurveyProvider.COLUMN_REG_ID_CRC32);
+                        String question_id= jsonObject.getString(SurveyProvider.COLUMN_QUESTION_ID);
+                        String ans01= jsonObject.getString(SurveyProvider.COLUMN_ANS01);
+                        String ans02= jsonObject.getString(SurveyProvider.COLUMN_ANS02);
+                        String ans03= jsonObject.getString(SurveyProvider.COLUMN_ANS03);
+                        String ans04= jsonObject.getString(SurveyProvider.COLUMN_ANS04);
+                        String ans05= jsonObject.getString(SurveyProvider.COLUMN_ANS05);
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-      //  getRegId();
-
-        // TESTING CONTENT PROVIDER
-        ContentValues mNewValues = new ContentValues();
+// TESTING CONTENT PROVIDER
+                        ContentValues mNewValues = new ContentValues();
 
 /*
  * Sets the values of each column and inserts the word. The arguments to the "put"
  * method are "column name" and "value"
  */
-        mNewValues.put(SurveyProvider.COLUMN_CLOUD_ID, "111");
-        mNewValues.put(SurveyProvider.COLUMN_QUESTION_ID, "222");
-        mNewValues.put(SurveyProvider.COLUMN_REG_ID_CRC32, "333");
-        mNewValues.put(SurveyProvider.COLUMN_ANS01, "444");
-        mNewValues.put(SurveyProvider.COLUMN_ANS02, "555");
-        mNewValues.put(SurveyProvider.COLUMN_ANS03, "666");
-        mNewValues.put(SurveyProvider.COLUMN_ANS04, "777");
-        mNewValues.put(SurveyProvider.COLUMN_ANS05, "888");
+                        mNewValues.put(SurveyProvider.COLUMN_CLOUD_ID, int_cloud_id);
+                        mNewValues.put(SurveyProvider.COLUMN_QUESTION_ID, question_id);
+                        mNewValues.put(SurveyProvider.COLUMN_REG_ID_CRC32,reg_id_crc32);
+                        mNewValues.put(SurveyProvider.COLUMN_ANS01, ans01);
+                        mNewValues.put(SurveyProvider.COLUMN_ANS02, ans02);
+                        mNewValues.put(SurveyProvider.COLUMN_ANS03, ans03);
+                        mNewValues.put(SurveyProvider.COLUMN_ANS04, ans04);
+                        mNewValues.put(SurveyProvider.COLUMN_ANS05, ans05);
 
 
-        Uri mNewUri;
-        mNewUri = getContentResolver().insert(
-                SurveyProvider.CONTENT_URI,   // the user dictionary content URI
-                mNewValues                          // the values to insert
-        );
-        Log.d(LOG_TAG, " mNewUri="+mNewUri.getPath());
+                        Uri mNewUri;
+                        mNewUri = getContentResolver().insert(
+                                SurveyProvider.CONTENT_URI,   // the user dictionary content URI
+                                mNewValues                          // the values to insert
+                        );
+                        Log.d(LOG_TAG, " mNewUri="+mNewUri.getPath());
+
+                    }
+
+
+
+                } catch (IOException e) {
+                    Log.d(LOG_TAG, " ###syncDb IOException "+e.toString());
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    Log.d(LOG_TAG, " ###syncDb JSONException "+e.toString());
+                    e.printStackTrace();
+                }
+
+                Log.d(LOG_TAG, "...doInBackground ...GOING TO DO CONTENT PROVIDER");
+                return "###TODO content provider ";
+            }
+
+            @Override
+            protected void onPostExecute(String msg) {
+                Log.d(LOG_TAG, "...doing syncDb onPostExecute(String msg) =>"+msg);
+                Log.d(LOG_TAG, "... AFTER DATA READY,  notifyGcm();");
+
+             //   notifyGcm();
+            }
+        }.execute(null, null, null);
+
+    }
+
+    private InputStream downloadUrl(String urlString) throws IOException {
+        URL url = new URL(urlString);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setReadTimeout(10000 /* milliseconds */);
+        conn.setConnectTimeout(15000 /* milliseconds */);
+        conn.setRequestMethod("GET");
+        conn.setDoInput(true);
+        // Starts the query
+        conn.connect();
+        return conn.getInputStream();
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+      //  getRegId();
+        syncDb();
+
+
     }
 
 

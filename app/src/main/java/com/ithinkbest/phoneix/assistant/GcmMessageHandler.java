@@ -4,8 +4,10 @@ import android.app.IntentService;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +17,9 @@ import android.util.Log;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import org.apache.commons.io.IOUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -117,10 +122,57 @@ public class GcmMessageHandler extends IntentService {
                 String urlString = "http://www.ithinkbest.com/gcm/phoenix/get_survey.php?security_code=abc123";
                 String strData = null;
                 try {
-                    InputStream inputStream = downloadUrl(urlString);
+                    InputStream inputStream = downloadUrl(urlString);//
                     strData = IOUtils.toString(inputStream);
                     Log.d(LOG_TAG, "...check raw json " + strData);
+                    JSONArray jsonArray=new JSONArray(strData);
+                    JSONObject jsonObject=null;
+                    for (int i=0;i<jsonArray.length();i++){
+                        jsonObject=jsonArray.getJSONObject(i);
+                        //cloud_id":"92","reg_id_crc32":"2741685047","question_id":"","ans01":"","ans02":"","ans03":"","ans04":"","an
+                        String cloud_id= jsonObject.getString(SurveyProvider.COLUMN_CLOUD_ID);
+                        int int_cloud_id=Integer.parseInt(cloud_id);
+                        String reg_id_crc32= jsonObject.getString(SurveyProvider.COLUMN_REG_ID_CRC32);
+                        String question_id= jsonObject.getString(SurveyProvider.COLUMN_QUESTION_ID);
+                        String ans01= jsonObject.getString(SurveyProvider.COLUMN_ANS01);
+                        String ans02= jsonObject.getString(SurveyProvider.COLUMN_ANS02);
+                        String ans03= jsonObject.getString(SurveyProvider.COLUMN_ANS03);
+                        String ans04= jsonObject.getString(SurveyProvider.COLUMN_ANS04);
+                        String ans05= jsonObject.getString(SurveyProvider.COLUMN_ANS05);
+
+// TESTING CONTENT PROVIDER
+                        ContentValues mNewValues = new ContentValues();
+
+/*
+ * Sets the values of each column and inserts the word. The arguments to the "put"
+ * method are "column name" and "value"
+ */
+                        mNewValues.put(SurveyProvider.COLUMN_CLOUD_ID, int_cloud_id);
+                        mNewValues.put(SurveyProvider.COLUMN_QUESTION_ID, question_id);
+                        mNewValues.put(SurveyProvider.COLUMN_REG_ID_CRC32,reg_id_crc32);
+                        mNewValues.put(SurveyProvider.COLUMN_ANS01, ans01);
+                        mNewValues.put(SurveyProvider.COLUMN_ANS02, ans02);
+                        mNewValues.put(SurveyProvider.COLUMN_ANS03, ans03);
+                        mNewValues.put(SurveyProvider.COLUMN_ANS04, ans04);
+                        mNewValues.put(SurveyProvider.COLUMN_ANS05, ans05);
+
+
+                        Uri mNewUri;
+                        mNewUri = getContentResolver().insert(
+                                SurveyProvider.CONTENT_URI,   // the user dictionary content URI
+                                mNewValues                          // the values to insert
+                        );
+                        Log.d(LOG_TAG, " mNewUri="+mNewUri.getPath());
+
+                    }
+
+
+
                 } catch (IOException e) {
+                    Log.d(LOG_TAG, " ###syncDb IOException "+e.toString());
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    Log.d(LOG_TAG, " ###syncDb JSONException "+e.toString());
                     e.printStackTrace();
                 }
 
