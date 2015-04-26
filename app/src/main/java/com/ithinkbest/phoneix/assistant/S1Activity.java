@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
@@ -249,15 +250,18 @@ public class S1Activity extends ActionBarActivity {
                     regid = gcm.register(PROJECT_NUMBER);
                     msg = "Device registered, registration ID=" + regid;
                     //      Toast.makeText(getApplicationContext(), "One time only, to send registration ID to App server, "+regid,Toast.LENGTH_SHORT).show();
-                    Log.i(LOG_TAG, "... to submit survey result");
-                    Log.i(LOG_TAG, msg);
+//                    Log.i(LOG_TAG, "... to submit survey result");
+//                    Log.i(LOG_TAG, msg);
 
                     String result=readGcmInsertResult();
-                    Log.i(LOG_TAG, "...readGcmInsertResult() "+result);
+//                    Log.i(LOG_TAG, "...readGcmInsertResult() "+result);
+                    msg=result.split("<BR>")[1].trim(); // extra space after <BR>1#
+                    Log.i(LOG_TAG, msg);
 
 
                 } catch (IOException ex) {
-                    msg = "Error :" + ex.getMessage();
+//                    msg = "Error :" + ex.getMessage();
+                    msg = "-1";
 
                 }
                 return msg;
@@ -265,7 +269,20 @@ public class S1Activity extends ActionBarActivity {
 
             @Override
             protected void onPostExecute(String msg) {
+//                Log.i(LOG_TAG, "...onPostExecute, msg="+msg);
+//                int intMsg=Integer.parseInt(msg);
+//                Log.i(LOG_TAG, "...onPostExecute, int msg="+msg);
 
+                if (msg.equals("1")){
+                    Toast.makeText(getApplicationContext(), "成功提交送出到雲端服務", Toast.LENGTH_LONG).show();
+                    btnSubmit.setEnabled(false);
+                    btnPrev.setEnabled(false);
+                    btnSubmit.setText("提交成功,請按手機的返回,回到上一層畫面.");
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "沒有能夠成功提交送出到雲端服務,請檢查您手機的網路連線,或稍後再試.", Toast.LENGTH_LONG).show();
+
+                }
                 //
             }
         }.execute(null, null, null);
@@ -278,12 +295,23 @@ public class S1Activity extends ActionBarActivity {
         }
         StringBuilder builder = new StringBuilder();
         HttpClient client = new DefaultHttpClient();
-//        HttpGet httpGet = new HttpGet("https://bugzilla.mozilla.org/rest/bug?assigned_to=lhenry@mozilla.com");
-//        String str = "http://ithinkbest.com/taipeiokgcm/gcm_insert.php?reg_id=" + regid;
-        String str = "http://ithinkbest.com/gcm/phoenix/gcm_insert.php?reg_id=" + regid;
 
-//        String str= TaipeiOkProvider.JSNXX[cat];
+        String ans01=""+answer[0];
+        String ans02=""+answer[1];
+        String ans03=""+answer[2];
+        String ans04=""+answer[3];
+        String ans05=""+answer[4];
 
+        StringBuilder surveyResult=new StringBuilder();
+        surveyResult.append("&question_id=a123456")
+                .append("&ans01=" + ans01)
+                .append("&ans02=" + ans02)
+                .append("&ans03=" + ans03)
+                .append("&ans04=" + ans04)
+                .append("&ans05=" + ans05);
+
+//        String str = "http://ithinkbest.com/gcm/phoenix/gcm_insert.php?reg_id=" + regid+surveyResult.toString();
+        String str = "http://ithinkbest.com/gcm/phoenix/submit_survey.php?reg_id=" + regid+surveyResult.toString();
 
         HttpGet httpGet = new HttpGet(str);
         Log.d(LOG_TAG, "new HttpGet(str) => " + str);
