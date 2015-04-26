@@ -125,13 +125,15 @@ public class GcmMessageHandler extends IntentService {
                 }
 
                 Log.d(LOG_TAG, "...doInBackground ...GOING TO DO CONTENT PROVIDER");
-                return strData;
+                return "###TODO content provider ";
             }
 
             @Override
             protected void onPostExecute(String msg) {
                 Log.d(LOG_TAG, "...doing syncDb onPostExecute(String msg) =>"+msg);
+                Log.d(LOG_TAG, "... AFTER DATA READY,  notifyGcm();");
 
+                notifyGcm();
             }
         }.execute(null, null, null);
 
@@ -154,7 +156,7 @@ public class GcmMessageHandler extends IntentService {
             public void run() {
                 //    Toast.makeText(getApplicationContext(), mes, Toast.LENGTH_LONG).show();
                 syncDb();
-                notifyGcm();
+              //  notifyGcm();
 
             }
         });
