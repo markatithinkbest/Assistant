@@ -38,7 +38,7 @@
 
         <provider
             android:name=".SurveyProvider"
-            android:authorities="@string/content_authority"
+            android:authorities="com.ithinkbest.phoneix.assistant.SurveyProvider"
             android:exported="false"
             android:syncable="true" />
 

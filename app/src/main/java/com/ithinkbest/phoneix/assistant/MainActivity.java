@@ -1,5 +1,6 @@
 package com.ithinkbest.phoneix.assistant;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -47,6 +48,30 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
       //  getRegId();
+
+        // TESTING CONTENT PROVIDER
+        ContentValues mNewValues = new ContentValues();
+
+/*
+ * Sets the values of each column and inserts the word. The arguments to the "put"
+ * method are "column name" and "value"
+ */
+        mNewValues.put(SurveyProvider.COLUMN_CLOUD_ID, "111");
+        mNewValues.put(SurveyProvider.COLUMN_QUESTION_ID, "222");
+        mNewValues.put(SurveyProvider.COLUMN_REG_ID_CRC32, "333");
+        mNewValues.put(SurveyProvider.COLUMN_ANS01, "444");
+        mNewValues.put(SurveyProvider.COLUMN_ANS02, "555");
+        mNewValues.put(SurveyProvider.COLUMN_ANS03, "666");
+        mNewValues.put(SurveyProvider.COLUMN_ANS04, "777");
+        mNewValues.put(SurveyProvider.COLUMN_ANS05, "888");
+
+
+        Uri mNewUri;
+        mNewUri = getContentResolver().insert(
+                SurveyProvider.CONTENT_URI,   // the user dictionary content URI
+                mNewValues                          // the values to insert
+        );
+        Log.d(LOG_TAG, " mNewUri="+mNewUri.getPath());
     }
 
 

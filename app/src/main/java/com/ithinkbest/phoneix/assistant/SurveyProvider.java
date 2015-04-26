@@ -18,7 +18,8 @@ public class SurveyProvider extends ContentProvider {
     static String LOG_TAG = "MARK987";
 
     static final String PROVIDER_NAME = "com.ithinkbest.phoneix.assistant.SurveyProvider";
-
+//    static final String PROVIDER_NAME = "com.ithinkbest.phoneix.assistant.SurveyProvider";
+                                        //"com.ithinkbest.phoneix.assistant
     private static final String SUB1 = "sub1";
     private static final String SUB2 = "sub2"; // for rawQuery
 
@@ -57,17 +58,6 @@ public class SurveyProvider extends ContentProvider {
     public static final String COLUMN_ANS03 = "ans03";
     public static final String COLUMN_ANS04 = "ans04";
     public static final String COLUMN_ANS05 = "ans05";
-
-//    static final String COLUMN_ID = "_id"; // local ID
-//    static final String COLUMN_NAME = "name";
-//    static final String COLUMN_CERTIFICATION_CATEGORY = "certification_category";
-//    static final String COLUMN_TEL = "tel";
-//    static final String COLUMN_DISPLAY_ADDR = "display_addr";
-//    static final String COLUMN_POI_ADDR = "poi_addr";
-
-    //
-//    static final String COLUMN_DISTRICT = "district";
-
 
     static private final String DATABASE_NAME = "phoenix.db"; // YOUR DESIRED DATABASE
     static private final String TABLE_NAME = "survey"; // YOUR DESIRED TABLE
