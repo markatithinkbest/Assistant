@@ -21,6 +21,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.ithinkbest.phoneix.assistant.data.WeatherContract.LocationEntry;
 import com.ithinkbest.phoneix.assistant.data.WeatherContract.WeatherEntry;
+import com.ithinkbest.phoneix.assistant.data.WeatherContract.SurveyEntry;
 
 /**
  * Manages a local database for weather data.
@@ -38,6 +39,21 @@ public class WeatherDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+
+        final String SQL_CREATE_SURVEY_TABLE = "CREATE TABLE " + SurveyEntry.TABLE_NAME + " (" +
+                SurveyEntry._ID + " INTEGER PRIMARY KEY," +
+                SurveyEntry.COLUMN_CLOUD_ID + " INTEGER, " +
+                SurveyEntry.COLUMN_REG_ID_CRC32 + " TEXT NOT NULL, " +
+                SurveyEntry.COLUMN_QUESTION_ID + " TEXT NOT NULL, " +
+                SurveyEntry.COLUMN_ANS01 + " TEXT NOT NULL, " +
+                SurveyEntry.COLUMN_ANS02 + " TEXT NOT NULL, " +
+                SurveyEntry.COLUMN_ANS03 + " TEXT NOT NULL, " +
+                SurveyEntry.COLUMN_ANS04 + " TEXT NOT NULL, " +
+                SurveyEntry.COLUMN_ANS05 + " TEXT NOT NULL " +
+
+                " );";
+
+
         // Create a table to hold locations.  A location consists of the string supplied in the
         // location setting, the city name, and the latitude and longitude
         final String SQL_CREATE_LOCATION_TABLE = "CREATE TABLE " + LocationEntry.TABLE_NAME + " (" +
@@ -79,6 +95,7 @@ public class WeatherDbHelper extends SQLiteOpenHelper {
                 " UNIQUE (" + WeatherEntry.COLUMN_DATE + ", " +
                 WeatherEntry.COLUMN_LOC_KEY + ") ON CONFLICT REPLACE);";
 
+        sqLiteDatabase.execSQL(SQL_CREATE_SURVEY_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_LOCATION_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_WEATHER_TABLE);
     }
@@ -93,6 +110,9 @@ public class WeatherDbHelper extends SQLiteOpenHelper {
         // should be your top priority before modifying this method.
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + LocationEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + WeatherEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + SurveyEntry.TABLE_NAME);
+
+
         onCreate(sqLiteDatabase);
     }
 }
