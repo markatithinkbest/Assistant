@@ -10,7 +10,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -18,7 +17,7 @@ import java.util.HashMap;
 public class SurveyProvider extends ContentProvider {
     static String LOG_TAG = "MARK987";
 
-    static final String PROVIDER_NAME = "com.ithinkbest.taipeiok.TaipeiOkProvider";
+    static final String PROVIDER_NAME = "com.ithinkbest.phoneix.assistant.SurveyProvider";
 
     private static final String SUB1 = "sub1";
     private static final String SUB2 = "sub2"; // for rawQuery
@@ -46,35 +45,6 @@ public class SurveyProvider extends ContentProvider {
     }
 
     private SQLiteDatabase sqlDB;
-    static final String CAT00 = "旅館業";
-    static final String CAT01 = "美容美髮業";
-    static final String CAT02 = "電影片映演業";
-    static final String CAT03 = "游泳業";
-    static final String CAT04 = "浴室業";
-    static final String CAT05 = "娛樂業";
-    static final String CAT06 = "製麵業及包子饅頭製作業";
-    static final String CAT07 = "食品販售業";
-    static final String CAT08 = "一般餐飲業";
-    static final String CAT09 = "飲冰品業";
-    static final String CAT10 = "烘焙業";
-    static final String CAT11 = "中央廚房";
-    static final String CAT12 = "休憩餐飲業";
-
-    static final String JSN00 = "http://data.taipei.gov.tw/opendata/apply/json/QTdBNEQ5NkQtQkM3MS00QUI2LUJENTctODI0QTM5MkIwMUZE";
-    static final String JSN01 = "http://data.taipei.gov.tw/opendata/apply/json/NzQzQjFGQjUtNzUxMi00RkUxLUIwQ0UtOUQxNjQ4MkExMDBD";
-    static final String JSN02 = "http://data.taipei.gov.tw/opendata/apply/json/NEMwNDE1OTEtRTJDOC00NTM2LUI1QkItMjc3NDJBMDU3MjNE";
-    static final String JSN03 = "http://data.taipei.gov.tw/opendata/apply/json/N0JCNzMwNEYtMkRDQi00ODNFLUIzQjMtN0E0ODM4RTU4NUUz";
-    static final String JSN04 = "http://data.taipei.gov.tw/opendata/apply/json/NEFERTQ0NDUtQjFFMy00NzJGLTlDRUQtQURGMEExQzI2NjNF";
-    static final String JSN05 = "http://data.taipei.gov.tw/opendata/apply/json/MDE1QzBFRUQtQkE2RC00MjNGLTkwMUEtOUMzMTU3MDYwNkE2";
-    static final String JSN06 = "http://data.taipei.gov.tw/opendata/apply/json/N0JFMjA1NEUtNjJCQi00NkIzLThDNTEtMEVDMDBERDE0QkUx";
-    static final String JSN07 = "http://data.taipei.gov.tw/opendata/apply/json/RUMzQTdDQUYtRDQ5NC00QTVBLUJFRkMtMzlEQUMwNTVBN0Yx";
-    static final String JSN08 = "http://data.taipei.gov.tw/opendata/apply/json/MDY2RERBMTctQTE4Mi00OEU5LUI2M0YtRTg0NTQ1NUEzM0Mw";
-    static final String JSN09 = "http://data.taipei.gov.tw/opendata/apply/json/ODg0QTEyNUEtRDMwQi00RTJCLTgyODAtQzNBMzlFOTk1NUJF";
-    static final String JSN10 = "http://data.taipei.gov.tw/opendata/apply/json/QzgwMEFBMjUtMjlCNS00OUZDLUE2MzgtQUIyRDJBRDM5NjJB";
-    static final String JSN11 = "http://data.taipei.gov.tw/opendata/apply/json/NEI5ODUxQzMtRTc5MS00MjJCLTk1QTMtMTkxRUFCQTBBMzY5";
-    static final String JSN12 = "http://data.taipei.gov.tw/opendata/apply/json/QTBEMTY0RUEtMjgyNi00Q0I1LTkwNzMtMjlDQUM0MkNBOTdD";
-    public final static String[] CATXX = {CAT00, CAT01, CAT02, CAT03, CAT04, CAT05, CAT06, CAT07, CAT08, CAT09, CAT10, CAT11, CAT12};
-    public final static String[] JSNXX = {JSN00, JSN01, JSN02, JSN03, JSN04, JSN05, JSN06, JSN07, JSN08, JSN09, JSN10, JSN11, JSN12};
 
     DatabaseHelper dbHelper = null;
 
@@ -96,22 +66,22 @@ public class SurveyProvider extends ContentProvider {
 //    static final String COLUMN_POI_ADDR = "poi_addr";
 
     //
-    static final String COLUMN_DISTRICT = "district";
+//    static final String COLUMN_DISTRICT = "district";
 
 
-    static private final String DATABASE_NAME = "taipei.db"; // YOUR DESIRED DATABASE
-    static private final String TABLE_NAME = "ok"; // YOUR DESIRED TABLE
-    static private final int DATABASE_VERSION = 5; // ### need to increase when change
+    static private final String DATABASE_NAME = "phoenix.db"; // YOUR DESIRED DATABASE
+    static private final String TABLE_NAME = "survey"; // YOUR DESIRED TABLE
+    static private final int DATABASE_VERSION = 2; // ### need to increase when change
 
     static private final String COL0 = COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT";
-    static private final String COL1 = COLUMN_NAME + " TEXT NOT NULL ";
-    static private final String COL2 = COLUMN_CERTIFICATION_CATEGORY + " TEXT NOT NULL ";
-    static private final String COL3 = COLUMN_TEL + " TEXT NOT NULL ";
-    static private final String COL4 = COLUMN_DISPLAY_ADDR + " TEXT NOT NULL ";
-    static private final String COL5 = COLUMN_POI_ADDR + " TEXT NOT NULL ";
-
-    //
-    static private final String COL6 = COLUMN_DISTRICT + " TEXT NOT NULL ";
+    static private final String COL1 = COLUMN_CLOUD_ID + " INTEGER";
+    static private final String COL2 = COLUMN_QUESTION_ID + " TEXT NOT NULL ";
+    static private final String COL3 = COLUMN_REG_ID_CRC32 + " TEXT NOT NULL ";
+    static private final String COL4 = COLUMN_ANS01 + " TEXT NOT NULL ";
+    static private final String COL5 = COLUMN_ANS02 + " TEXT NOT NULL ";
+    static private final String COL6 = COLUMN_ANS03 + " TEXT NOT NULL ";
+    static private final String COL7 = COLUMN_ANS04 + " TEXT NOT NULL ";
+    static private final String COL8 = COLUMN_ANS05 + " TEXT NOT NULL ";
 
     // table structure
     static private final String CREATE_DB_TABLE = " CREATE TABLE " + TABLE_NAME + " ("
@@ -121,7 +91,9 @@ public class SurveyProvider extends ContentProvider {
             + COL3 + ","
             + COL4 + ","
             + COL5 + ","
-            + COL6 + " "
+            + COL6 + ","
+            + COL7 + ","
+            + COL8 + " "
             + ");";
 
     @Override
@@ -157,14 +129,14 @@ public class SurveyProvider extends ContentProvider {
             case uriCode:
                 queryBuilder.setProjectionMap(values);
                 break;
-            case uriCodeRawQuery:
-                String sql = "SELECT " + COLUMN_ID + "," +
-                        COLUMN_DISTRICT + ", COUNT(" + COLUMN_DISTRICT + ") AS CNT" +
-                        " FROM " + TABLE_NAME +
-                        " WHERE  " + selection +
-                        " GROUP BY " + COLUMN_DISTRICT;
-                Log.d(LOG_TAG, "############## raw query ############" + sql);
-                return dbHelper.getReadableDatabase().rawQuery(sql, null);
+//            case uriCodeRawQuery:
+//                String sql = "SELECT " + COLUMN_ID + "," +
+//                        COLUMN_DISTRICT + ", COUNT(" + COLUMN_DISTRICT + ") AS CNT" +
+//                        " FROM " + TABLE_NAME +
+//                        " WHERE  " + selection +
+//                        " GROUP BY " + COLUMN_DISTRICT;
+//                Log.d(LOG_TAG, "############## raw query ############" + sql);
+//                return dbHelper.getReadableDatabase().rawQuery(sql, null);
             //  break;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);

@@ -37,7 +37,7 @@
         </activity>
 
         <provider
-            android:name=".data.WeatherProvider"
+            android:name=".SurveyProvider"
             android:authorities="@string/content_authority"
             android:exported="false"
             android:syncable="true" />
