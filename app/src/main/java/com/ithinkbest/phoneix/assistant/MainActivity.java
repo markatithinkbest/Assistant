@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.ithinkbest.phoneix.assistant.opendata.OpenDataActivity;
 import com.ithinkbest.phoneix.assistant.survey.CheckSurveyResultActivity;
 import com.ithinkbest.phoneix.assistant.survey.SurveyActivity;
 

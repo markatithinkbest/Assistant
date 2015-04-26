@@ -26,8 +26,8 @@ public class SurveyProvider extends ContentProvider {
     private static final String URL = "content://" + PROVIDER_NAME + "/" + SUB1;
     private static final String URL_RAW_QUERY = "content://" + PROVIDER_NAME + "/" + SUB2;
 
-    static final Uri CONTENT_URI = Uri.parse(URL);
-    static final Uri CONTENT_URI_RAW_QUERY = Uri.parse(URL_RAW_QUERY);
+    public static final Uri CONTENT_URI = Uri.parse(URL);
+    public static final Uri CONTENT_URI_RAW_QUERY = Uri.parse(URL_RAW_QUERY);
 
     static final int uriCode = 1;
     static final int uriCodeRawQuery = 2;

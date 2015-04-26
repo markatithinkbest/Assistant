@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant;
+package com.ithinkbest.phoneix.assistant.gcm;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -15,6 +15,11 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.ithinkbest.phoneix.assistant.R;
+import com.ithinkbest.phoneix.assistant.SurveyProvider;
+import com.ithinkbest.phoneix.assistant.ToGcmActivity;
+import com.ithinkbest.phoneix.assistant.ToGooglePlayActivity;
+import com.ithinkbest.phoneix.assistant.gcm.GcmBroadcastReceiver;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;

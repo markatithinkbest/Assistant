@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant;
+package com.ithinkbest.phoneix.assistant.opendata;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.ithinkbest.phoneix.assistant.R;
 import com.ithinkbest.phoneix.assistant.opendata.CityListActivity;
 import com.ithinkbest.phoneix.assistant.opendata.CmpRpt1Activity;
 import com.ithinkbest.phoneix.assistant.opendata.GcisActivity;
