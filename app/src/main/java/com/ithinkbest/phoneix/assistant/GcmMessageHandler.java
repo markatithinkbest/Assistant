@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
@@ -13,10 +14,18 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import org.apache.commons.io.IOUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class GcmMessageHandler extends IntentService {
     static String LOG_TAG = "MARK987 GcmMessageHandler";
     String mes;
     private Handler handler;
+
     public GcmMessageHandler() {
         super("GcmMessageHandler");
     }
@@ -27,6 +36,7 @@ public class GcmMessageHandler extends IntentService {
         super.onCreate();
         handler = new Handler();
     }
+
     @Override
     protected void onHandleIntent(Intent intent) {
 
@@ -50,16 +60,16 @@ public class GcmMessageHandler extends IntentService {
 
     private void notifyGcm() {
         int idGooglePlay = 12347;
-        String shortMsg=mes;
-        if (shortMsg.length()>24){
-            shortMsg=shortMsg.substring(0,24)+" ...";
+        String shortMsg = mes;
+        if (shortMsg.length() > 24) {
+            shortMsg = shortMsg.substring(0, 24) + " ...";
         }
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher)
                         .setContentTitle(getString(R.string.app_name))
-                        .setContentText("Received: "+mes);
+                        .setContentText("Received: " + mes);
 // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(this, ToGcmActivity.class)
                 .putExtra("message", mes);
@@ -86,14 +96,63 @@ public class GcmMessageHandler extends IntentService {
 
     }
 
-   public void syncDb(){
-       //http://www.ithinkbest.com/gcm/phoenix/get_survey.php?security_code=abc123
-       Log.d(LOG_TAG,"...doing syncDb http://www.ithinkbest.com/gcm/phoenix/get_survey.php?security_code=abc123");
-   }
-    public void showToast(){
+    public void doAsyncTask() {
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+
+                return "xxx";
+            }
+
+            @Override
+            protected void onPostExecute(String msg) {
+            }
+        }.execute(null, null, null);
+    }
+
+    public void syncDb() {
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                String urlString = "http://www.ithinkbest.com/gcm/phoenix/get_survey.php?security_code=abc123";
+                String strData = null;
+                try {
+                    InputStream inputStream = downloadUrl(urlString);
+                    strData = IOUtils.toString(inputStream);
+                    Log.d(LOG_TAG, "...check raw json " + strData);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Log.d(LOG_TAG, "...doInBackground ...GOING TO DO CONTENT PROVIDER");
+                return strData;
+            }
+
+            @Override
+            protected void onPostExecute(String msg) {
+                Log.d(LOG_TAG, "...doing syncDb onPostExecute(String msg) =>"+msg);
+
+            }
+        }.execute(null, null, null);
+
+    }
+
+    private InputStream downloadUrl(String urlString) throws IOException {
+        URL url = new URL(urlString);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setReadTimeout(10000 /* milliseconds */);
+        conn.setConnectTimeout(15000 /* milliseconds */);
+        conn.setRequestMethod("GET");
+        conn.setDoInput(true);
+        // Starts the query
+        conn.connect();
+        return conn.getInputStream();
+    }
+
+    public void showToast() {
         handler.post(new Runnable() {
             public void run() {
-            //    Toast.makeText(getApplicationContext(), mes, Toast.LENGTH_LONG).show();
+                //    Toast.makeText(getApplicationContext(), mes, Toast.LENGTH_LONG).show();
                 syncDb();
                 notifyGcm();
 
