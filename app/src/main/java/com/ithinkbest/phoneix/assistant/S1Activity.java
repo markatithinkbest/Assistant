@@ -31,12 +31,6 @@ import java.io.InputStreamReader;
 
 public class S1Activity extends ActionBarActivity {
     static String LOG_TAG = "MARK987 S1Activity ";
-    static int questionNumber = 0;
-    static int totalQuestion = 5;
-  //  static int lastChecked = -1;
-
-    // --- GCM ---
-    // String PROJECT_NUMBER = "538682377549";// Project ID: taipei-ok Project Number: 538682377549
 
     //    Phoneix Assistant, oops, typo of phoenix
 //    Project ID: turnkey-env-92723 Project Number: 525555782914
@@ -44,6 +38,9 @@ public class S1Activity extends ActionBarActivity {
     static String regid = null;
     GoogleCloudMessaging gcm;
 
+    static final String QUESTION_ID="PHOENIX-0001";
+    static int questionNumber = 0;
+    static int totalQuestion = 5;
 
 
     TextView txtQuestion;
@@ -305,7 +302,7 @@ public class S1Activity extends ActionBarActivity {
         String ans05=""+answer[4];
 
         StringBuilder surveyResult=new StringBuilder();
-        surveyResult.append("&question_id=bbb987")
+        surveyResult.append("&question_id="+QUESTION_ID)
                 .append("&ans01=" + ans01)
                 .append("&ans02=" + ans02)
                 .append("&ans03=" + ans03)
@@ -350,7 +347,7 @@ public class S1Activity extends ActionBarActivity {
         StringBuilder builder=new StringBuilder();
 //        String str = "http://ithinkbest.com/gcm/phoenix/gcm_insert.php?reg_id=" + regid+surveyResult.toString();
 //        String str = "http://ithinkbest.com/gcm/phoenix/submit_survey.php?reg_id=" + regid+surveyResult.toString();
-        String str = "http://ithinkbest.com/gcm/phoenix/send_survey_update.php?secure_code=123456glkj527364859fj12@3" ;
+        String str = "http://ithinkbest.com/gcm/phoenix/send_survey_update.php?secure_code=123456glkj527364859fj12@3&question_id="+QUESTION_ID ;
 
         HttpGet httpGet = new HttpGet(str);
         Log.d(LOG_TAG, "... TO INFORM SERVER TO  => " + str);
