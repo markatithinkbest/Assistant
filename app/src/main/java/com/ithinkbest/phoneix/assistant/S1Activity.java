@@ -274,10 +274,12 @@ public class S1Activity extends ActionBarActivity {
 //                Log.i(LOG_TAG, "...onPostExecute, int msg="+msg);
 
                 if (msg.equals("1")){
-                    Toast.makeText(getApplicationContext(), "成功提交送出到雲端服務", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(), "成功提交送出到雲端服務", Toast.LENGTH_LONG).show();
                     btnSubmit.setEnabled(false);
                     btnPrev.setEnabled(false);
-                    btnSubmit.setText("提交成功,請按手機的返回,回到上一層畫面.");
+                    btnSubmit.setText("提交到雲端服務成功,請按手機的返回,回到上一層畫面.");
+                    Log.d(LOG_TAG, "...triggerGcm();");
+                    triggerGcm();
 
                 }else{
                     Toast.makeText(getApplicationContext(), "沒有能夠成功提交送出到雲端服務,請檢查您手機的網路連線,或稍後再試.", Toast.LENGTH_LONG).show();
@@ -340,6 +342,59 @@ public class S1Activity extends ActionBarActivity {
 
         }
         return builder.toString();
+    }
+
+
+    public String triggerGcmCore() {
+        HttpClient client = new DefaultHttpClient();
+        StringBuilder builder=new StringBuilder();
+//        String str = "http://ithinkbest.com/gcm/phoenix/gcm_insert.php?reg_id=" + regid+surveyResult.toString();
+//        String str = "http://ithinkbest.com/gcm/phoenix/submit_survey.php?reg_id=" + regid+surveyResult.toString();
+        String str = "http://ithinkbest.com/gcm/phoenix/send_survey_update.php?secure_code=123456glkj527364859fj12@3" ;
+
+        HttpGet httpGet = new HttpGet(str);
+        Log.d(LOG_TAG, "... TO INFORM SERVER TO  => " + str);
+        try {
+            HttpResponse response = client.execute(httpGet);
+            StatusLine statusLine = response.getStatusLine();
+            int statusCode = statusLine.getStatusCode();
+            if (statusCode == 200) {
+                HttpEntity entity = response.getEntity();
+                InputStream content = entity.getContent();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    builder.append(line);
+                }
+            } else {
+                Log.e(LOG_TAG, "Failed to download file");
+            }
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+
+            Log.d(LOG_TAG, "Exception " + e.toString());
+
+        }
+        return builder.toString();
+    }
+    public void triggerGcm() {
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                String result=triggerGcmCore();
+             //   String msg=    result.split("<BR>")[1].trim(); // extra space after <BR>1#
+
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(String msg) {
+                Log.i(LOG_TAG, "...onPostExecute, msg="+msg);
+            }
+        }.execute(null, null, null);
     }
     // === GCM Util === end
 }
