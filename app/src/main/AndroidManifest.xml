@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GcisActivity"
+            android:name=".opendata.GcisActivity"
             android:label="@string/title_activity_gcis" >
         </activity>
         <activity
@@ -36,7 +36,7 @@
             android:label="@string/title_activity_open_data" >
         </activity>
         <activity
-            android:name=".CityListActivity"
+            android:name=".opendata.CityListActivity"
             android:label="@string/title_activity_city_list" >
         </activity>
 
@@ -47,7 +47,7 @@
             android:syncable="true" />
 
         <activity
-            android:name=".CmpRpt1Activity"
+            android:name=".opendata.CmpRpt1Activity"
             android:label="@string/title_activity_cmp_rpt1" >
         </activity>
         <activity

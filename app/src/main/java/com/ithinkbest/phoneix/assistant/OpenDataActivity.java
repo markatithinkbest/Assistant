@@ -8,6 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.ithinkbest.phoneix.assistant.opendata.CityListActivity;
+import com.ithinkbest.phoneix.assistant.opendata.CmpRpt1Activity;
+import com.ithinkbest.phoneix.assistant.opendata.GcisActivity;
+
 
 public class OpenDataActivity extends ActionBarActivity {
     static String LOG_TAG="MARK987";
