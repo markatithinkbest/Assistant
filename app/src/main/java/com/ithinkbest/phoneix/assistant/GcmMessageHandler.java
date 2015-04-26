@@ -14,7 +14,7 @@ import android.util.Log;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 public class GcmMessageHandler extends IntentService {
-    static String LOG_TAG = "MARK987";
+    static String LOG_TAG = "MARK987 GcmMessageHandler";
     String mes;
     private Handler handler;
     public GcmMessageHandler() {
@@ -86,12 +86,15 @@ public class GcmMessageHandler extends IntentService {
 
     }
 
-
+   public void syncDb(){
+       //http://www.ithinkbest.com/gcm/phoenix/get_survey.php?security_code=abc123
+       Log.d(LOG_TAG,"...doing syncDb http://www.ithinkbest.com/gcm/phoenix/get_survey.php?security_code=abc123");
+   }
     public void showToast(){
         handler.post(new Runnable() {
             public void run() {
             //    Toast.makeText(getApplicationContext(), mes, Toast.LENGTH_LONG).show();
-
+                syncDb();
                 notifyGcm();
 
             }

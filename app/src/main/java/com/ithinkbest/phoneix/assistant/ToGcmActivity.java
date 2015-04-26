@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 
 public class ToGcmActivity extends Activity {
-
+    static String LOG_TAG = "MARK987 ToGcmActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
