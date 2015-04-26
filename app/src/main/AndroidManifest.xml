@@ -54,6 +54,11 @@
             android:name=".S1Activity"
             android:label="@string/title_activity_s1" >
         </activity>
+        <activity
+            android:name=".ToGooglePlayActivity"
+            android:label="ToGooglePlayActivity" >
+        </activity>
+
 
 
         <receiver
@@ -61,7 +66,7 @@
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="com.ithinkbest.taipeiok" />
+                <category android:name="com.ithinkbest.phoneix.assistant" />
             </intent-filter>
         </receiver>
         <service android:name=".GcmMessageHandler" />

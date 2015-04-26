@@ -41,5 +41,7 @@
     <string name="prev">上一題</string>
     <string name="next">下一題</string>
     <string name="submit">提交送出</string>
+    <string name="title_activity_to_gcm">GCM activity title</string>
+    <string name="launch">launch</string>
 
 </resources>
