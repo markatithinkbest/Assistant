@@ -209,7 +209,7 @@ public class GcmMessageHandler extends IntentService {
                 Log.d(LOG_TAG, "...doing syncDb onPostExecute(String msg) =>"+msg);
                 Log.d(LOG_TAG, "... AFTER DATA READY,  notifyGcm();");
 
-                //   notifyGcm();
+                   notifyGcm();
             }
         }.execute(null, null, null);
 

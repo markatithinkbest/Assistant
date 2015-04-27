@@ -495,12 +495,23 @@ public class Survey001Activity extends ActionBarActivity {
         HttpClient client = new DefaultHttpClient();
         StringBuilder builder = new StringBuilder();
         String str = "http://ithinkbest.com/gcm/phoenix/send_survey_update.php?secure_code=123456glkj527364859fj12@3&question_id=" + QUESTION_ID;
+
+/*
+
 //PROBLEM
-//http://ithinkbest.com/gcm/phoenix/send_survey_update.php?secure_code=123456glkj527364859fj12@3&question_id=PHOENIX-001
-//"registration_ids" field cannot be empty
+checking
+http://ithinkbest.com/gcm/phoenix/send_survey_update.php?secure_code=123456glkj527364859fj12@3&question_id=PHOENIX-001
+
+got result
+"registration_ids" field cannot be empty
+
+--- after fix
+{"multicast_id":7678625375688475679,"success":1,"failure":0,"canonical_ids":0,"results":[{"message_id":"0:1430133540770088%10a18a96f9fd7ecd"}]}
+
         //since i clean up entire table data
         //v_survey_result is broken, now return nothing
-/*
+
+
         select `survey_result`.`reg_id` AS `reg_id`,
         `survey_result`.`question_id` AS `question_id`,
         `survey_result`.`ans01` AS `ans01`,
@@ -517,6 +528,21 @@ public class Survey001Activity extends ActionBarActivity {
        NOT ANY SYSTEM ERROR, BUT PROGRAMMER
        AFTER TESTING,
        I DIDN'T REMOVE WHERE CLAUSE
+
+
+CREATE VIEW v_survey_result_fix1 AS
+   select `survey_result`.`reg_id` AS `reg_id`,
+        `survey_result`.`question_id` AS `question_id`,
+        `survey_result`.`ans01` AS `ans01`,
+        `survey_result`.`ans02` AS `ans02`,
+        `survey_result`.`ans03` AS `ans03`,
+        `survey_result`.`ans04` AS `ans04`,
+        `survey_result`.`ans05` AS `ans05`,
+        max(`survey_result`.`time_stamp`) AS `latest_time`,
+        count(`survey_result`.`time_stamp`) AS `submit_cnt`
+        from `survey_result`
+
+        group by `survey_result`.`reg_id`
 
         */
 
