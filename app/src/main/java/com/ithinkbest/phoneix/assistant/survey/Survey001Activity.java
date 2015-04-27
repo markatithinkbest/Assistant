@@ -104,6 +104,11 @@ public class Survey001Activity extends ActionBarActivity {
         btnNext = (Button) findViewById(R.id.btnNext);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         if (working_mode==CHECKING_SURVEY_RESULT) {
+            //
+
+
+
+            //
             btnSubmit.setVisibility(View.VISIBLE);
             btnSubmit.setEnabled(false);
 
@@ -187,11 +192,31 @@ public class Survey001Activity extends ActionBarActivity {
     private void ShowQuestion() {
 
         checkComplete();
-        txtQuestion.setText(QUESTION_SET[questionNumber][0]);
-        radioBtn1.setText(QUESTION_SET[questionNumber][1]);
-        radioBtn2.setText(QUESTION_SET[questionNumber][2]);
-        radioBtn3.setText(QUESTION_SET[questionNumber][3]);
+        if (working_mode==DOING_SURVEY) {
+            txtQuestion.setText(QUESTION_SET[questionNumber][0]);
+            radioBtn1.setText(QUESTION_SET[questionNumber][1]);
+            radioBtn2.setText(QUESTION_SET[questionNumber][2]);
+            radioBtn3.setText(QUESTION_SET[questionNumber][3]);
+        }
+        if (working_mode==CHECKING_SURVEY_RESULT) {
+            radioBtn1.setChecked(false);
+            radioBtn2.setChecked(false);
+            radioBtn3.setChecked(false);
 
+            int num1=5;
+            int num2=60;
+            int num3=35;
+            String style="% - ";
+            String result1=String.format("%3d",num1)+style;
+            String result2=String.format("%3d",num2)+style;
+            String result3=String.format("%3d",num3)+style;
+
+
+            txtQuestion.setText(QUESTION_SET[questionNumber][0]);
+            radioBtn1.setText( result1+QUESTION_SET[questionNumber][1]);
+            radioBtn2.setText( result2+QUESTION_SET[questionNumber][2]);
+            radioBtn3.setText( result3+QUESTION_SET[questionNumber][3]);
+        }
         handleButtons();
     }
 
