@@ -494,9 +494,10 @@ public class Survey001Activity extends ActionBarActivity {
     public String triggerGcmCore() {
         HttpClient client = new DefaultHttpClient();
         StringBuilder builder = new StringBuilder();
-//        String str = "http://ithinkbest.com/gcm/phoenix/gcm_insert.php?reg_id=" + regid+surveyResult.toString();
-//        String str = "http://ithinkbest.com/gcm/phoenix/submit_survey.php?reg_id=" + regid+surveyResult.toString();
         String str = "http://ithinkbest.com/gcm/phoenix/send_survey_update.php?secure_code=123456glkj527364859fj12@3&question_id=" + QUESTION_ID;
+//PROBLEM
+//http://ithinkbest.com/gcm/phoenix/send_survey_update.php?secure_code=123456glkj527364859fj12@3&question_id=PHOENIX-001
+//"registration_ids" field cannot be empty
 
         HttpGet httpGet = new HttpGet(str);
         Log.d(LOG_TAG, "... TO INFORM SERVER TO  => " + str);
