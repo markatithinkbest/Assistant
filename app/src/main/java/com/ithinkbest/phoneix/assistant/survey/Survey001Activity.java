@@ -238,10 +238,15 @@ public class Survey001Activity extends ActionBarActivity {
             int num1=0;
             int num2=60;
             int num3=25;
-            Log.d(LOG_TAG,"questionNumber="+questionNumber);
+            Log.d(LOG_TAG,"ShowQuestion() questionNumber="+questionNumber);
             switch (questionNumber){
                 case 1:
+                    Log.d(LOG_TAG,"getColumnName(1)="+resultCursor.getColumnName(1));
 
+                    resultCursor.moveToFirst();
+                    do{
+
+                    }while (resultCursor.moveToNext());
 
                     break;
                 case 2:
@@ -259,7 +264,7 @@ public class Survey001Activity extends ActionBarActivity {
 
 //            String.format("%.2f", value) ;
 
-            String strFormat="%4.1f%% -- %s -- 共%3d票 ";
+            String strFormat="%4.1f%% -- %s -- 計%d票 ";
             String result1=String.format(strFormat,100*num1/total,QUESTION_SET[questionNumber][1],num1);
             String result2=String.format(strFormat,100*num2/total,QUESTION_SET[questionNumber][2],num2);
             String result3=String.format(strFormat,100*num3/total,QUESTION_SET[questionNumber][3],num3);

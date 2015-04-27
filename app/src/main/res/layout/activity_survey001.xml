@@ -10,78 +10,92 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.ithinkbest.phoneix.assistant.survey.Survey001Activity">
 
-    <TextView
-        android:id="@+id/txtQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/s1_01"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <RadioGroup
-        android:id="@+id/radioGrp"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent">
 
-        <RadioButton
-            android:id="@+id/radioBtn1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/s1_01a"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-        <RadioButton
-            android:id="@+id/radioBtn2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/s1_01b"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TextView
+                android:id="@+id/txtQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/s1_01"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <RadioButton
-            android:id="@+id/radioBtn3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/s1_01c"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            <RadioGroup
+                android:id="@+id/radioGrp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
 
-    </RadioGroup>
+                <RadioButton
+                    android:id="@+id/radioBtn1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/s1_01a"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <RadioButton
+                    android:id="@+id/radioBtn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/s1_01b"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <RadioButton
+                    android:id="@+id/radioBtn3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/s1_01c"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            </RadioGroup>
 
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnPrev"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onPrevButtonClicked"
-            android:text="@string/prev"
+                <Button
+                    android:id="@+id/btnPrev"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onPrevButtonClicked"
+                    android:text="@string/prev"
 
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onNextButtonClicked"
-            android:text="@string/next"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-    </LinearLayout>
+                <Button
+                    android:id="@+id/btnNext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onNextButtonClicked"
+                    android:text="@string/next"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onSubmitButtonClicked"
-        android:text="@string/submit"
-android:enabled="false"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:onClick="onSubmitButtonClicked"
+                android:text="@string/submit"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
+
+
