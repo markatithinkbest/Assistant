@@ -79,7 +79,9 @@ public class Survey001Activity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey001);
-
+        // to fix
+        // bug: after survey, when check result it shows last question
+        questionNumber=0;
         // savedInstanceState.
         Intent intent = getIntent();
         String msg = intent.getStringExtra(Common.EXTRA_MESSAGE);
