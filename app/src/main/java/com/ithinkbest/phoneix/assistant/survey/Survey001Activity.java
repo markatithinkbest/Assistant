@@ -1,5 +1,6 @@
 package com.ithinkbest.phoneix.assistant.survey;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -33,6 +34,10 @@ import java.io.InputStreamReader;
 public class Survey001Activity extends ActionBarActivity {
     static String LOG_TAG = "MARK987 S1Activity ";
 
+
+    static String working_mode;// SURVEY OR CHECK RESULT
+
+   // public final static String EXTRA_MESSAGE = "Survey001Activity.MESSAGE";
     //    Phoneix Assistant, oops, typo of phoenix
 //    Project ID: turnkey-env-92723 Project Number: 525555782914
     String PROJECT_NUMBER = "525555782914";
@@ -71,6 +76,14 @@ public class Survey001Activity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey001);
+
+       // savedInstanceState.
+        Intent intent = getIntent();
+        String working_mode = intent.getStringExtra(Common.EXTRA_MESSAGE);
+
+            Log.d(LOG_TAG," ...  working_mode => "+working_mode);
+
+
         txtQuestion = (TextView) findViewById(R.id.txtQuestion);
         radioGrp = (RadioGroup) findViewById(R.id.radioGrp);
 

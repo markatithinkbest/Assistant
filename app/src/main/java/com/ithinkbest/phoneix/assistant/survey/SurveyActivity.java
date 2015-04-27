@@ -12,6 +12,9 @@ import com.ithinkbest.phoneix.assistant.R;
 
 public class SurveyActivity extends ActionBarActivity {
     static String LOG_TAG = "MARK987 SurveyActivity";
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,7 @@ public class SurveyActivity extends ActionBarActivity {
     public void onClickBtn1(View view) {
 //        Log.d(LOG_TAG, "...btn1");
         Intent intent = new Intent(this, Survey001Activity.class);
+        intent.putExtra(Common.EXTRA_MESSAGE, Common.MODE_SURVEY);
         startActivity(intent);
 
 

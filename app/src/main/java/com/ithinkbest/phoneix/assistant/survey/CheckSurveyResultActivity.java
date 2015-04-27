@@ -42,8 +42,10 @@ public class CheckSurveyResultActivity extends ActionBarActivity {
     }
 
     public void onClickBtn1(View view) {
-//        Log.d(LOG_TAG, "...btn1");
-        Intent intent = new Intent(this, CheckSurveyResult001Activity.class);
+//        DO IT IN BETTER WAY
+//        Intent intent = new Intent(this, CheckSurveyResult001Activity.class);
+        Intent intent = new Intent(this, Survey001Activity.class);
+        intent.putExtra(Common.EXTRA_MESSAGE, Common.MODE_CHECK_RESULT);
         startActivity(intent);
 
 
