@@ -95,6 +95,10 @@
             android:name=".survey.CheckSurveyResult001Activity"
             android:label="@string/title_activity_check_survey_result001" >
         </activity>
+        <activity
+            android:name=".survey.CheckSurveyResult002Activity"
+            android:label="@string/title_activity_check_survey_result002" >
+        </activity>
     </application>
 
 </manifest>

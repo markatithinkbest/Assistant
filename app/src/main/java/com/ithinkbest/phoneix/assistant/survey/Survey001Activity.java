@@ -41,7 +41,7 @@ public class Survey001Activity extends ActionBarActivity {
 
     static final String QUESTION_ID="PHOENIX-001";
     static int questionNumber = 0;
-    static int totalQuestion = 5;
+    static int totalQuestion = 3;
 
 
     TextView txtQuestion;

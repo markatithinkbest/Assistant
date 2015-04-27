@@ -106,7 +106,22 @@ public class MainActivity extends ActionBarActivity {
 //                        Log.d(LOG_TAG, " mNewUri="+mNewUri.getPath());
 
                     }
+                    if ( cVVector.size() > 0 ) {
+                        String str = null;
 
+                        //  String selection = TaipeiOkProvider.COLUMN_CERTIFICATION_CATEGORY+"=\""+ TaipeiOkProvider.CATXX[cat]+"\"" ;
+
+                        int delCnt = getContentResolver().delete(SurveyProvider.CONTENT_URI,
+                                null,
+                                null);
+                        Log.d(LOG_TAG, "del cnt= " + delCnt);
+
+
+                        ContentValues[] cvArray = new ContentValues[cVVector.size()];
+                        cVVector.toArray(cvArray);
+                        int bulkCnt = getContentResolver().bulkInsert(SurveyProvider.CONTENT_URI, cvArray);
+                        Log.d(LOG_TAG, "bulk cnt= " + bulkCnt);
+                    }
 
 
                 } catch (IOException e) {
@@ -115,23 +130,11 @@ public class MainActivity extends ActionBarActivity {
                 } catch (JSONException e) {
                     Log.d(LOG_TAG, " ###syncDb JSONException "+e.toString());
                     e.printStackTrace();
+                } catch (Exception e) {
+                    Log.d(LOG_TAG, " ###syncDb Exception "+e.toString());
+                    e.printStackTrace();
                 }
-                if ( cVVector.size() > 0 ) {
-                    String str = null;
 
-                    //  String selection = TaipeiOkProvider.COLUMN_CERTIFICATION_CATEGORY+"=\""+ TaipeiOkProvider.CATXX[cat]+"\"" ;
-
-                    int delCnt = getContentResolver().delete(SurveyProvider.CONTENT_URI,
-                            null,
-                            null);
-                    Log.d(LOG_TAG, "del cnt= " + delCnt);
-
-
-                    ContentValues[] cvArray = new ContentValues[cVVector.size()];
-                    cVVector.toArray(cvArray);
-                    int bulkCnt = getContentResolver().bulkInsert(SurveyProvider.CONTENT_URI, cvArray);
-                    Log.d(LOG_TAG, "bulk cnt= " + bulkCnt);
-                }
               //  Log.d(LOG_TAG, "...doInBackground ...GOING TO DO CONTENT PROVIDER");
                 return "###TODO content provider ";
             }

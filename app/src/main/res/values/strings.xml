@@ -50,6 +50,7 @@
     <string name="chkResultBtn1">查看問卷1: 微型創業鳳凰,進階班上課心得</string>
     <string name="chkResultBtn2">查看問卷2: 關於這支APP</string>
 
-    <string name="title_activity_check_survey_result001">CheckSurveyResult001Activity</string>
+    <string name="title_activity_check_survey_result001">查看問卷1: 微型創業鳳凰,進階班上課心得</string>
+    <string name="title_activity_check_survey_result002">查看問卷2: 關於這支APP</string>
 
 </resources>

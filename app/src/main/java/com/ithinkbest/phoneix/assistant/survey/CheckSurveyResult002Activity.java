@@ -1,28 +1,26 @@
 package com.ithinkbest.phoneix.assistant.survey;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.ithinkbest.phoneix.assistant.R;
 
 
-public class CheckSurveyResultActivity extends ActionBarActivity {
-    static String LOG_TAG = "MARK987 SurveyActivity";
+public class CheckSurveyResult002Activity extends ActionBarActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check_survey_result);
+        setContentView(R.layout.activity_check_survey_result002);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_survey, menu);
+        getMenuInflater().inflate(R.menu.menu_check_survey_result001, menu);
         return true;
     }
 
@@ -39,25 +37,5 @@ public class CheckSurveyResultActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void onClickBtn1(View view) {
-//        Log.d(LOG_TAG, "...btn1");
-        Intent intent = new Intent(this, CheckSurveyResult001Activity.class);
-        startActivity(intent);
-
-
-
-    }
-    public void onClickBtn2(View view) {
-//        Log.d(LOG_TAG,"...btn2");
-        Intent intent = new Intent(this, CheckSurveyResult002Activity.class);
-        startActivity(intent);
-
-
-    }
-    public void onClickBtn3(View view) {
-//        Log.d(LOG_TAG,"...btn3");
-
     }
 }
