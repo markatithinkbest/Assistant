@@ -117,7 +117,7 @@ public class Survey001Activity extends ActionBarActivity {
             btnSubmit.setText("查看調研結果,隨時可以以手機的返回鍵回到上一層畫面");
 
             resultCursor=getQuestionResultCursor(QUESTION_ID);
-            Log.d(LOG_TAG,"CURSOR =>"+resultCursor.l)
+            Log.d(LOG_TAG,"CURSOR CNT=>"+resultCursor.getCount());
         }
         ShowQuestion();
     }
@@ -238,10 +238,31 @@ public class Survey001Activity extends ActionBarActivity {
             int num1=5;
             int num2=60;
             int num3=35;
-            String style="% - ";
-            String result1=String.format("%3d",num1)+style;
-            String result2=String.format("%3d",num2)+style;
-            String result3=String.format("%3d",num3)+style;
+            Log.d(LOG_TAG,"questionNumber="+questionNumber);
+            switch (questionNumber){
+                case 1:
+
+
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+
+            }
+
+
+
+            String style="% -- ";
+//            String style=" ";
+            float total=num1+num2+num3;
+
+//            String.format("%.2f", value) ;
+
+
+            String result1=String.format("%3d -- %.1f",num1,num1/total)+style;
+            String result2=String.format("%3d -- %.1f",num2,num1/total)+style;
+            String result3=String.format("%3d -- %.1f",num3,num1/total)+style;
 
 
             txtQuestion.setText(QUESTION_SET[questionNumber][0]);
