@@ -235,9 +235,9 @@ public class Survey001Activity extends ActionBarActivity {
             radioBtn2.setEnabled(false);
             radioBtn3.setEnabled(false);
 
-            int num1=5;
+            int num1=0;
             int num2=60;
-            int num3=35;
+            int num3=25;
             Log.d(LOG_TAG,"questionNumber="+questionNumber);
             switch (questionNumber){
                 case 1:
@@ -253,22 +253,23 @@ public class Survey001Activity extends ActionBarActivity {
 
 
 
-            String style="% -- ";
-//            String style=" ";
+//            String style="% -- "
+            String style=" ";
             float total=num1+num2+num3;
 
 //            String.format("%.2f", value) ;
 
+            String strFormat="%4.1f%% -- %s -- 共%3d票 ";
+            String result1=String.format(strFormat,100*num1/total,QUESTION_SET[questionNumber][1],num1);
+            String result2=String.format(strFormat,100*num2/total,QUESTION_SET[questionNumber][2],num2);
+            String result3=String.format(strFormat,100*num3/total,QUESTION_SET[questionNumber][3],num3);
 
-            String result1=String.format("%3d -- %.1f",num1,num1/total)+style;
-            String result2=String.format("%3d -- %.1f",num2,num1/total)+style;
-            String result3=String.format("%3d -- %.1f",num3,num1/total)+style;
 
 
             txtQuestion.setText(QUESTION_SET[questionNumber][0]);
-            radioBtn1.setText( result1+QUESTION_SET[questionNumber][1]);
-            radioBtn2.setText( result2+QUESTION_SET[questionNumber][2]);
-            radioBtn3.setText( result3+QUESTION_SET[questionNumber][3]);
+            radioBtn1.setText( result1);
+            radioBtn2.setText( result2);
+            radioBtn3.setText( result3);
         }
         handleButtons();
     }
