@@ -128,7 +128,12 @@ public class Survey001Activity extends ActionBarActivity {
 
         // GOOD PRACTICE
         //http://developer.android.com/reference/android/database/Cursor.html
-        resultCursor.close();
+        //Caused by: java.lang.NullPointerException
+        if (resultCursor!=null) {
+            resultCursor.close();
+        }else{
+            Log.d(LOG_TAG,"It seems resultCursor is null!");
+        }
     }
 
     private Cursor getQuestionResultCursor(String question_id){
@@ -240,19 +245,22 @@ public class Survey001Activity extends ActionBarActivity {
             int num3=25;
             Log.d(LOG_TAG,"ShowQuestion() questionNumber="+questionNumber);
             switch (questionNumber){
-                case 1:
+                case 0:// match to ans1
                     Log.d(LOG_TAG,"getColumnName(1)="+resultCursor.getColumnName(1));
 
                     resultCursor.moveToFirst();
                     do{
+                        int val=Integer.parseInt( resultCursor.getString(1)); // 1 ==> ans01
+                        Log.d(LOG_TAG," val="+val);
 
                     }while (resultCursor.moveToNext());
 
                     break;
-                case 2:
+                case 1:// match to ans2
+                case 2:// match to ans3
                     break;
-                case 3:
-                    break;
+                default:
+                    Log.d(LOG_TAG,"ShowQuestion(), TODO ... questionNumber="+questionNumber);
 
             }
 
