@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant.survey;
+package com.ithinkbest.phoenix001.survey;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.ithinkbest.phoneix.assistant.R;
+import com.ithinkbest.phoenix001.R;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

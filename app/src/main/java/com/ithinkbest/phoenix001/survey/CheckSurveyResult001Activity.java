@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant.survey;
+package com.ithinkbest.phoenix001.survey;
 
 import android.database.Cursor;
 import android.net.Uri;
@@ -8,8 +8,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.webkit.WebView;
 
-import com.ithinkbest.phoneix.assistant.R;
-import com.ithinkbest.phoneix.assistant.SurveyProvider;
+import com.ithinkbest.phoenix001.R;
+import com.ithinkbest.phoenix001.SurveyProvider;
 
 import java.util.ArrayList;
 import java.util.List;

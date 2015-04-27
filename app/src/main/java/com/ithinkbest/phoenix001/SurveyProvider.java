@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant;
+package com.ithinkbest.phoenix001;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -18,8 +18,8 @@ import java.util.HashMap;
 public class SurveyProvider extends ContentProvider {
     static String LOG_TAG = "MARK987";
 
-    static final String PROVIDER_NAME = "com.ithinkbest.phoneix.assistant.SurveyProvider";
-//    static final String PROVIDER_NAME = "com.ithinkbest.phoneix.assistant.SurveyProvider";
+    static final String PROVIDER_NAME = "com.ithinkbest.phoenix001.SurveyProvider";
+//    static final String PROVIDER_NAME = "com.ithinkbest.phoenix001.SurveyProvider";
                                         //"com.ithinkbest.phoneix.assistant
     private static final String SUB1 = "sub1";
     private static final String SUB2 = "sub2"; // for rawQuery

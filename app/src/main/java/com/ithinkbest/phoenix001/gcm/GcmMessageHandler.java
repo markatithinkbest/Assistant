@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant.gcm;
+package com.ithinkbest.phoenix001.gcm;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -15,8 +15,8 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.ithinkbest.phoneix.assistant.R;
-import com.ithinkbest.phoneix.assistant.SurveyProvider;
+import com.ithinkbest.phoenix001.R;
+import com.ithinkbest.phoenix001.SurveyProvider;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;

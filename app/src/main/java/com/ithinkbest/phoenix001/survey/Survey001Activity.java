@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant.survey;
+package com.ithinkbest.phoenix001.survey;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,8 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.ithinkbest.phoneix.assistant.R;
-import com.ithinkbest.phoneix.assistant.SurveyProvider;
+import com.ithinkbest.phoenix001.R;
+import com.ithinkbest.phoenix001.SurveyProvider;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -31,6 +31,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+;
 
 
 public class Survey001Activity extends ActionBarActivity {

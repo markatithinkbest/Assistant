@@ -1,26 +1,32 @@
-package com.ithinkbest.phoneix.assistant.survey;
+package com.ithinkbest.phoenix001.gcm;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.ithinkbest.phoneix.assistant.R;
+import com.ithinkbest.phoenix001.R;
 
 
-public class CheckSurveyResult002Activity extends ActionBarActivity {
+public class ToGooglePlayActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check_survey_result002);
+     //   setContentView(R.layout.activity_result);
+        String str="https://play.google.com/store/search?q=ithinkbest.com";
+        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(str));
+        startActivity(myIntent);
+        finish();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_check_survey_result001, menu);
+    //    getMenuInflater().inflate(R.menu.menu_result, menu);
         return true;
     }
 

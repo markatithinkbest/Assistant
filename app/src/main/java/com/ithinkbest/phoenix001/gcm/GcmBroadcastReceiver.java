@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant.gcm;
+package com.ithinkbest.phoenix001.gcm;
 
 import android.app.Activity;
 import android.content.ComponentName;

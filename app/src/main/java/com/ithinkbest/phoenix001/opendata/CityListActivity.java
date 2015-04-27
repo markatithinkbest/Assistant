@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant.opendata;
+package com.ithinkbest.phoenix001.opendata;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.ithinkbest.phoneix.assistant.R;
+import com.ithinkbest.phoenix001.R;
 
 
 public class CityListActivity extends Activity {

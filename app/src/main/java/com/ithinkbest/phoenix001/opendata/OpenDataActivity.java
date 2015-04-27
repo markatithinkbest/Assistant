@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant.opendata;
+package com.ithinkbest.phoenix001.opendata;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 
-import com.ithinkbest.phoneix.assistant.R;
+import com.ithinkbest.phoenix001.R;
 
 
 public class OpenDataActivity extends ActionBarActivity {

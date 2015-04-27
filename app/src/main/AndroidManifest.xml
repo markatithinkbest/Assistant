@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ithinkbest.phoneix.assistant" >
+    package="com.ithinkbest.phoenix001" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -8,10 +8,10 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission
-        android:name="com.ithinkbest.phoneix.assistant.permission.C2D_MESSAGE"
+        android:name="com.ithinkbest.phoenix001.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.ithinkbest.phoneix.assistant.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.ithinkbest.phoenix001.permission.C2D_MESSAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.ithinkbest.phoenix001.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,75 +28,75 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".opendata.GcisActivity"
+            android:name="com.ithinkbest.phoenix001.opendata.GcisActivity"
             android:label="@string/title_activity_gcis" >
         </activity>
         <activity
-            android:name=".opendata.OpenDataActivity"
+            android:name="com.ithinkbest.phoenix001.opendata.OpenDataActivity"
             android:label="@string/title_activity_open_data" >
         </activity>
         <activity
-            android:name=".opendata.CityListActivity"
+            android:name="com.ithinkbest.phoenix001.opendata.CityListActivity"
             android:label="@string/title_activity_city_list" >
         </activity>
 
         <provider
-            android:name=".SurveyProvider"
-            android:authorities="com.ithinkbest.phoneix.assistant.SurveyProvider"
+            android:name="com.ithinkbest.phoenix001.SurveyProvider"
+            android:authorities="com.ithinkbest.phoenix001.SurveyProvider"
             android:exported="false"
             android:syncable="true" />
 
         <activity
-            android:name=".opendata.CmpRpt1Activity"
+            android:name="com.ithinkbest.phoenix001.opendata.CmpRpt1Activity"
             android:label="@string/title_activity_cmp_rpt1" >
         </activity>
         <activity
-            android:name=".survey.SurveyActivity"
+            android:name="com.ithinkbest.phoenix001.survey.SurveyActivity"
             android:label="@string/title_activity_survey" >
         </activity>
         <activity
-            android:name=".survey.Survey001Activity"
+            android:name="com.ithinkbest.phoenix001.survey.Survey001Activity"
             android:label="@string/title_activity_s1" >
         </activity>
         <activity
-            android:name=".survey.Survey002Activity"
+            android:name="com.ithinkbest.phoenix001.survey.Survey002Activity"
             android:label="@string/title_activity_s2" >
         </activity>
         <activity
-            android:name=".gcm.ToGooglePlayActivity"
+            android:name="com.ithinkbest.phoenix001.gcm.ToGooglePlayActivity"
             android:label="ToGooglePlayActivity" >
         </activity>
         <activity
-            android:name=".gcm.ToGcmActivity"
+            android:name="com.ithinkbest.phoenix001.gcm.ToGcmActivity"
             android:label="ToGcmActivity" >
         </activity>
 
         <receiver
-            android:name=".gcm.GcmBroadcastReceiver"
+            android:name="com.ithinkbest.phoenix001.gcm.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 
-                <category android:name="com.ithinkbest.phoneix.assistant" />
+                <category android:name="com.ithinkbest.phoenix001" />
             </intent-filter>
         </receiver>
 
-        <service android:name=".gcm.GcmMessageHandler" />
+        <service android:name="com.ithinkbest.phoenix001.gcm.GcmMessageHandler" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".survey.CheckSurveyResultActivity"
+            android:name="com.ithinkbest.phoenix001.survey.CheckSurveyResultActivity"
             android:label="@string/title_activity_check_survey_summary" >
         </activity>
         <activity
-            android:name=".survey.CheckSurveyResult001Activity"
+            android:name="com.ithinkbest.phoenix001.survey.CheckSurveyResult001Activity"
             android:label="@string/title_activity_check_survey_result001" >
         </activity>
         <activity
-            android:name=".survey.CheckSurveyResult002Activity"
+            android:name="com.ithinkbest.phoenix001.survey.CheckSurveyResult002Activity"
             android:label="@string/title_activity_check_survey_result002" >
         </activity>
     </application>

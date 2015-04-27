@@ -1,4 +1,4 @@
-package com.ithinkbest.phoneix.assistant.opendata;
+package com.ithinkbest.phoenix001.opendata;
 //https://code.google.com/p/secrets-for-android/source/browse/trunk/src/au/com/bytecode/opencsv/CSVReader.java
 /**
  Copyright 2005 Bytecode Pty Ltd.
