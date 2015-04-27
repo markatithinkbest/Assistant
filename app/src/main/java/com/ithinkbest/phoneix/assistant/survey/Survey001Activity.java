@@ -35,16 +35,19 @@ public class Survey001Activity extends ActionBarActivity {
     static String LOG_TAG = "MARK987 S1Activity ";
 
 
-    static String working_mode;// SURVEY OR CHECK RESULT
+    static int working_mode;// SURVEY OR CHECK RESULT
+    static int DOING_SURVEY = 1;// SURVEY OR CHECK RESULT
+    static int CHECKING_SURVEY_RESULT = 2;// SURVEY OR CHECK RESULT
 
-   // public final static String EXTRA_MESSAGE = "Survey001Activity.MESSAGE";
+
+    // public final static String EXTRA_MESSAGE = "Survey001Activity.MESSAGE";
     //    Phoneix Assistant, oops, typo of phoenix
 //    Project ID: turnkey-env-92723 Project Number: 525555782914
     String PROJECT_NUMBER = "525555782914";
     static String regid = null;
     GoogleCloudMessaging gcm;
 
-    public static final String QUESTION_ID="PHOENIX-001";
+    public static final String QUESTION_ID = "PHOENIX-001";
     static int questionNumber = 0;
     static int totalQuestion = 3;
 
@@ -58,31 +61,36 @@ public class Survey001Activity extends ActionBarActivity {
     Button btnNext;
     Button btnSubmit;
 
-//    微型創業鳳凰> 創業課程> 創業入門班
+    //    微型創業鳳凰> 創業課程> 創業入門班
 //    beboss.wda.gov.tw/cht/index.php?code=list&ids=6
 //    整年度創業課程查詢, 我要報名此課程, 創業入門班, 創業進階班,
     public static final String[][] QUESTION_SET = new String[][]{
 
             {"1. 上了鳳凰創業進階班,增加我對創業的必要知識,", "沒什麼幫助", "有幫助", "很有幫助"},
             {"2. 進階班課程,對我申請貸款,", "沒什麼幫助", "有幫助", "很有幫助"},
-        {"3. 我會不會介紹有需要的朋友參加這個課程,", "不會", "不一定", "肯定會"},
+            {"3. 我會不會介紹有需要的朋友參加這個課程,", "不會", "不一定", "肯定會"},
 
 
     };
     // WARNING: need to maintain with QUESTION_SET together
-    static int[] answer = {-1, -1, -1, -1,-1};
+    static int[] answer = {-1, -1, -1, -1, -1};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey001);
 
-       // savedInstanceState.
+        // savedInstanceState.
         Intent intent = getIntent();
-        String working_mode = intent.getStringExtra(Common.EXTRA_MESSAGE);
+        String msg = intent.getStringExtra(Common.EXTRA_MESSAGE);
 
-            Log.d(LOG_TAG," ...  working_mode => "+working_mode);
-
+        Log.d(LOG_TAG, " ...  msg => " + msg);
+        if (msg.equals(Common.MODE_SURVEY)) {
+            working_mode = DOING_SURVEY;
+        } else {
+            working_mode = CHECKING_SURVEY_RESULT;
+        }
+        Log.d(LOG_TAG, " ...  working_mode => " + working_mode);
 
         txtQuestion = (TextView) findViewById(R.id.txtQuestion);
         radioGrp = (RadioGroup) findViewById(R.id.radioGrp);
@@ -93,7 +101,12 @@ public class Survey001Activity extends ActionBarActivity {
         btnPrev = (Button) findViewById(R.id.btnPrev);
         btnNext = (Button) findViewById(R.id.btnNext);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
+        if (working_mode==CHECKING_SURVEY_RESULT) {
+            btnSubmit.setVisibility(View.VISIBLE);
+            btnSubmit.setEnabled(false);
 
+            btnSubmit.setText("查看調研結果,隨時可以以手機的返回鍵回到上一層畫面");
+        }
         ShowQuestion();
     }
 
@@ -135,22 +148,23 @@ public class Survey001Activity extends ActionBarActivity {
             btnNext.setEnabled(true);
         }
 
-
-        if (answer[questionNumber] == -1) {
-            // when entering new or unanswered question,
-            radioGrp.clearCheck();
-        } else {
-            // when revisit answered question
-            switch (answer[questionNumber]) {
-                case 1:
-                    radioGrp.check(radioBtn1.getId());
-                    break;
-                case 2:
-                    radioGrp.check(radioBtn2.getId());
-                    break;
-                case 3:
-                    radioGrp.check(radioBtn3.getId());
-                    break;
+        if (working_mode==DOING_SURVEY) {
+            if (answer[questionNumber] == -1) {
+                // when entering new or unanswered question,
+                radioGrp.clearCheck();
+            } else {
+                // when revisit answered question
+                switch (answer[questionNumber]) {
+                    case 1:
+                        radioGrp.check(radioBtn1.getId());
+                        break;
+                    case 2:
+                        radioGrp.check(radioBtn2.getId());
+                        break;
+                    case 3:
+                        radioGrp.check(radioBtn3.getId());
+                        break;
+                }
             }
         }
     }
@@ -169,6 +183,7 @@ public class Survey001Activity extends ActionBarActivity {
     }
 
     private void ShowQuestion() {
+
         checkComplete();
         txtQuestion.setText(QUESTION_SET[questionNumber][0]);
         radioBtn1.setText(QUESTION_SET[questionNumber][1]);
@@ -177,8 +192,9 @@ public class Survey001Activity extends ActionBarActivity {
 
         handleButtons();
     }
+
     public void onSubmitButtonClicked(View view) {
-        Log.d(LOG_TAG,"...SUBMIT");
+        Log.d(LOG_TAG, "...SUBMIT");
         getRegId();
 
     }
@@ -227,24 +243,31 @@ public class Survey001Activity extends ActionBarActivity {
         }
         checkComplete();
     }
-    private void checkComplete(){
 
+    private void checkComplete() {
+        if (working_mode==CHECKING_SURVEY_RESULT) {
+            btnSubmit.setVisibility(View.VISIBLE);
+            btnSubmit.setEnabled(false);
+
+            btnSubmit.setText("查看調研結果,隨時可以以手機的返回鍵回到上一層畫面");
+            return;
+        }
 //        boolean isComplete=true;
-        int answeredCnt=0;
-        for (int i=0;i<QUESTION_SET.length;i++){
-            if (answer[i]==-1){
+        int answeredCnt = 0;
+        for (int i = 0; i < QUESTION_SET.length; i++) {
+            if (answer[i] == -1) {
 //                isComplete=false;
 //                break;
-            }else{
+            } else {
                 answeredCnt++;
             }
         }
 //        Log.d(LOG_TAG, "...answer??? "+answeredCnt+"  " + Arrays.toString(answer));
-        if (answeredCnt==totalQuestion){
+        if (answeredCnt == totalQuestion) {
             btnSubmit.setText(getString(R.string.submit));
             btnSubmit.setEnabled(true);
-        }else{
-            btnSubmit.setText("已作答"+answeredCnt+"題, 共"+totalQuestion+ "題");
+        } else {
+            btnSubmit.setText("已作答" + answeredCnt + "題, 共" + totalQuestion + "題");
         }
     }
 
@@ -265,9 +288,9 @@ public class Survey001Activity extends ActionBarActivity {
 //                    Log.i(LOG_TAG, "... to submit survey result");
 //                    Log.i(LOG_TAG, msg);
 
-                    String result=readGcmInsertResult();
+                    String result = readGcmInsertResult();
 //                    Log.i(LOG_TAG, "...readGcmInsertResult() "+result);
-                    msg=result.split("<BR>")[1].trim(); // extra space after <BR>1#
+                    msg = result.split("<BR>")[1].trim(); // extra space after <BR>1#
                     Log.i(LOG_TAG, msg);
 
 
@@ -285,7 +308,7 @@ public class Survey001Activity extends ActionBarActivity {
 //                int intMsg=Integer.parseInt(msg);
 //                Log.i(LOG_TAG, "...onPostExecute, int msg="+msg);
 
-                if (msg.equals("1")){
+                if (msg.equals("1")) {
 //                    Toast.makeText(getApplicationContext(), "成功提交送出到雲端服務", Toast.LENGTH_LONG).show();
                     btnSubmit.setEnabled(false);
                     btnPrev.setEnabled(false);
@@ -293,7 +316,7 @@ public class Survey001Activity extends ActionBarActivity {
                     Log.d(LOG_TAG, "...triggerGcm();");
                     triggerGcm();
 
-                }else{
+                } else {
                     Toast.makeText(getApplicationContext(), "沒有能夠成功提交送出到雲端服務,請檢查您手機的網路連線,或稍後再試.", Toast.LENGTH_LONG).show();
 
                 }
@@ -310,14 +333,14 @@ public class Survey001Activity extends ActionBarActivity {
         StringBuilder builder = new StringBuilder();
         HttpClient client = new DefaultHttpClient();
 
-        String ans01=""+answer[0];
-        String ans02=""+answer[1];
-        String ans03=""+answer[2];
-        String ans04=""+answer[3];
-        String ans05=""+answer[4];
+        String ans01 = "" + answer[0];
+        String ans02 = "" + answer[1];
+        String ans03 = "" + answer[2];
+        String ans04 = "" + answer[3];
+        String ans05 = "" + answer[4];
 
-        StringBuilder surveyResult=new StringBuilder();
-        surveyResult.append("&question_id="+QUESTION_ID)
+        StringBuilder surveyResult = new StringBuilder();
+        surveyResult.append("&question_id=" + QUESTION_ID)
                 .append("&ans01=" + ans01)
                 .append("&ans02=" + ans02)
                 .append("&ans03=" + ans03)
@@ -325,7 +348,7 @@ public class Survey001Activity extends ActionBarActivity {
                 .append("&ans05=" + ans05);
 
 //        String str = "http://ithinkbest.com/gcm/phoenix/gcm_insert.php?reg_id=" + regid+surveyResult.toString();
-        String str = "http://ithinkbest.com/gcm/phoenix/submit_survey.php?reg_id=" + regid+surveyResult.toString();
+        String str = "http://ithinkbest.com/gcm/phoenix/submit_survey.php?reg_id=" + regid + surveyResult.toString();
 
         HttpGet httpGet = new HttpGet(str);
         Log.d(LOG_TAG, "new HttpGet(str) => " + str);
@@ -359,10 +382,10 @@ public class Survey001Activity extends ActionBarActivity {
 
     public String triggerGcmCore() {
         HttpClient client = new DefaultHttpClient();
-        StringBuilder builder=new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 //        String str = "http://ithinkbest.com/gcm/phoenix/gcm_insert.php?reg_id=" + regid+surveyResult.toString();
 //        String str = "http://ithinkbest.com/gcm/phoenix/submit_survey.php?reg_id=" + regid+surveyResult.toString();
-        String str = "http://ithinkbest.com/gcm/phoenix/send_survey_update.php?secure_code=123456glkj527364859fj12@3&question_id="+QUESTION_ID ;
+        String str = "http://ithinkbest.com/gcm/phoenix/send_survey_update.php?secure_code=123456glkj527364859fj12@3&question_id=" + QUESTION_ID;
 
         HttpGet httpGet = new HttpGet(str);
         Log.d(LOG_TAG, "... TO INFORM SERVER TO  => " + str);
@@ -392,19 +415,20 @@ public class Survey001Activity extends ActionBarActivity {
         }
         return builder.toString();
     }
+
     public void triggerGcm() {
         new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... params) {
-                String result=triggerGcmCore();
-             //   String msg=    result.split("<BR>")[1].trim(); // extra space after <BR>1#
+                String result = triggerGcmCore();
+                //   String msg=    result.split("<BR>")[1].trim(); // extra space after <BR>1#
 
                 return result;
             }
 
             @Override
             protected void onPostExecute(String msg) {
-                Log.i(LOG_TAG, "...onPostExecute, msg="+msg);
+                Log.i(LOG_TAG, "...onPostExecute, msg=" + msg);
             }
         }.execute(null, null, null);
     }
