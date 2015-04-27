@@ -1,6 +1,7 @@
 package com.ithinkbest.phoneix.assistant.survey;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.ithinkbest.phoneix.assistant.R;
+import com.ithinkbest.phoneix.assistant.SurveyProvider;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -51,7 +53,7 @@ public class Survey001Activity extends ActionBarActivity {
     static int questionNumber = 0;
     static int totalQuestion = 3;
 
-
+    Cursor resultCursor;
     TextView txtQuestion;
     RadioGroup radioGrp;
     RadioButton radioBtn1;
@@ -113,10 +115,40 @@ public class Survey001Activity extends ActionBarActivity {
             btnSubmit.setEnabled(false);
 
             btnSubmit.setText("查看調研結果,隨時可以以手機的返回鍵回到上一層畫面");
+
+            resultCursor=getQuestionResultCursor(QUESTION_ID);
+            Log.d(LOG_TAG,"CURSOR =>"+resultCursor.l)
         }
         ShowQuestion();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // GOOD PRACTICE
+        //http://developer.android.com/reference/android/database/Cursor.html
+        resultCursor.close();
+    }
+
+    private Cursor getQuestionResultCursor(String question_id){
+        Log.d(LOG_TAG," ...DOING QUERY");
+        String[] projection=new String[]{
+                SurveyProvider.COLUMN_QUESTION_ID,
+                SurveyProvider.COLUMN_ANS01,
+                SurveyProvider.COLUMN_ANS02,
+                SurveyProvider.COLUMN_ANS03,
+        };
+        String selection=SurveyProvider.COLUMN_QUESTION_ID+"='"+question_id+"'";
+        Cursor cursor= getContentResolver().query(
+                SurveyProvider.CONTENT_URI,
+                projection,
+                selection,
+                null,null);
+
+
+        return cursor;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -199,9 +231,9 @@ public class Survey001Activity extends ActionBarActivity {
             radioBtn3.setText(QUESTION_SET[questionNumber][3]);
         }
         if (working_mode==CHECKING_SURVEY_RESULT) {
-            radioBtn1.setChecked(false);
-            radioBtn2.setChecked(false);
-            radioBtn3.setChecked(false);
+            radioBtn1.setEnabled(false);
+            radioBtn2.setEnabled(false);
+            radioBtn3.setEnabled(false);
 
             int num1=5;
             int num2=60;
