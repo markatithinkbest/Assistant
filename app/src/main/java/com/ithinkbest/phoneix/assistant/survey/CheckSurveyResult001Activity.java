@@ -117,18 +117,50 @@ public class CheckSurveyResult001Activity extends ActionBarActivity {
 
 
                 html.append("<h3>" + title + "</h3>");
-
+//                html.append("" + title + "");
+                html.append("<table>");
                 for (int i = 0; i < Survey001Activity.QUESTION_SET.length; i++) {
-                    html.append("<h4>").append(Survey001Activity.QUESTION_SET[i][0]).append("</h4>");
+//                    html.append("<tr><td  nowrap='nowrap'>");
+                    html.append("<tr><td  >");
 
+//                    html.append("<h3>").append(Survey001Activity.QUESTION_SET[i][0]).append("</h3>");
+                    html.append("").append(Survey001Activity.QUESTION_SET[i][0]).append("");
+                    html.append("</td></tr>");
+                    html.append("<tr><td  nowrap='nowrap'>");
                     html.append("<table border='1' cellpadding='0' cellspacing='0'>");
-                    html.append("<tr>").append("<th>").append(Survey001Activity.QUESTION_SET[i][1]).append("</th>").append("</tr>");
-                    html.append("<tr>").append("<th>").append(Survey001Activity.QUESTION_SET[i][2]).append("</th>").append("</tr>");
-                    html.append("<tr>").append("<th>").append(Survey001Activity.QUESTION_SET[i][3]).append("</th>").append("</tr>");
+                    html.append("<tr>")
+                            .append("<th  align='center' nowrap='nowrap'>&nbsp;")
+                            .append(" ")
+                            .append("&nbsp;</th>")
+                            .append("<th  align='center' nowrap='nowrap'>&nbsp;")
+                            .append("個數 ")
+                            .append("&nbsp;</th>")
+                            .append("<th  align='center' nowrap='nowrap'>&nbsp;")
+                            .append("比例 ")
+                            .append("&nbsp;</th>")
+                            .append("</tr>");
+
+                    for (int j = 1; j <= 3; j++) {
+                        html.append("<tr>")
+                                .append("<th  align='center' nowrap='nowrap'>&nbsp;")
+                                .append(Survey001Activity.QUESTION_SET[i][j])
+                                .append("&nbsp;</th>")
+                                .append("<td  align='center' nowrap='nowrap'>&nbsp;")
+                                .append("111 ")
+                                .append("&nbsp;</td>")
+                                .append("<td  align='center' nowrap='nowrap'>&nbsp;")
+                                .append("33% ")
+                                .append("&nbsp;</td>")
+                                .append("</tr>");
+//                        html.append("<tr>").append("<th>&nbsp;").append(Survey001Activity.QUESTION_SET[i][2]).append("&nbsp;</th>").append("</tr>");
+//                        html.append("<tr>").append("<th>&nbsp;").append(Survey001Activity.QUESTION_SET[i][3]).append("&nbsp;</th>").append("</tr>");
+                    }
                     html.append("</table>");
+                    html.append("</table><br>");
 
+                    html.append("</td></tr>");
                 }
-
+                html.append("<table>");
 
                 //  Log.d(LOG_TAG, "...doInBackground ...GOING TO DO CONTENT PROVIDER");
                 return html.toString();
