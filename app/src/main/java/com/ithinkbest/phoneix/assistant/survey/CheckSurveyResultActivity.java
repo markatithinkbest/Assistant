@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ithinkbest.phoneix.assistant.R;
-import com.ithinkbest.phoneix.assistant.survey.Survey001Activity;
 
 
 public class CheckSurveyResultActivity extends ActionBarActivity {
@@ -44,7 +43,7 @@ public class CheckSurveyResultActivity extends ActionBarActivity {
 
     public void onClickBtn1(View view) {
 //        Log.d(LOG_TAG, "...btn1");
-        Intent intent = new Intent(this, Survey001Activity.class);
+        Intent intent = new Intent(this, CheckSurveyResult001Activity.class);
         startActivity(intent);
 
 

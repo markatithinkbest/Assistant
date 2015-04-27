@@ -30,7 +30,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
-public class Survey001Activity extends ActionBarActivity {
+public class Survey002Activity extends ActionBarActivity {
     static String LOG_TAG = "MARK987 S1Activity ";
 
     //    Phoneix Assistant, oops, typo of phoenix
@@ -39,7 +39,7 @@ public class Survey001Activity extends ActionBarActivity {
     static String regid = null;
     GoogleCloudMessaging gcm;
 
-    static final String QUESTION_ID="PHOENIX-0001";
+    static final String QUESTION_ID="APP-001";
     static int questionNumber = 0;
     static int totalQuestion = 5;
 
@@ -69,7 +69,7 @@ public class Survey001Activity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_survey001);
+        setContentView(R.layout.activity_survey002);
         txtQuestion = (TextView) findViewById(R.id.txtQuestion);
         radioGrp = (RadioGroup) findViewById(R.id.radioGrp);
 
