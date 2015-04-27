@@ -77,7 +77,7 @@ public class GcmMessageHandler extends IntentService {
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher)
                         .setContentTitle(getString(R.string.app_name))
-                        .setContentText("Received: " + mes);
+                        .setContentText("接收到: " + mes);
 // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(this, ToGcmActivity.class)
                 .putExtra("message", mes);

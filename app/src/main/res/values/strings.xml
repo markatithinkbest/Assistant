@@ -43,8 +43,8 @@
     <string name="prev">上一題</string>
     <string name="next">下一題</string>
     <string name="submit">提交送出</string>
-    <string name="title_activity_to_gcm">GCM activity title</string>
-    <string name="launch">launch</string>
+    <string name="title_activity_to_gcm">=== 推送信息 ===</string>
+    <string name="launch">現在就啟動 ==> IThinkBest 微型創業鳯凰小幫手</string>
     <string name="title_activity_util">UtilActivity</string>
     <string name="title_activity_check_survey_summary">查看學員問卷調查統計</string>
     <string name="chkResultBtn1">查看問卷1: 微型創業鳳凰,進階班上課心得</string>
