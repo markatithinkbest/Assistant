@@ -83,7 +83,7 @@ public class Survey001Activity extends ActionBarActivity {
         setContentView(R.layout.activity_survey001);
         // to fix
         // bug: after survey, when check result it shows last question
-        questionNumber=0;
+        questionNumber = 0;
         // savedInstanceState.
         Intent intent = getIntent();
         String msg = intent.getStringExtra(Common.EXTRA_MESSAGE);
@@ -105,9 +105,8 @@ public class Survey001Activity extends ActionBarActivity {
         btnPrev = (Button) findViewById(R.id.btnPrev);
         btnNext = (Button) findViewById(R.id.btnNext);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
-        if (working_mode==CHECKING_SURVEY_RESULT) {
+        if (working_mode == CHECKING_SURVEY_RESULT) {
             //
-
 
 
             //
@@ -116,8 +115,8 @@ public class Survey001Activity extends ActionBarActivity {
 
             btnSubmit.setText("查看調研結果,隨時可以以手機的返回鍵回到上一層畫面");
 
-            resultCursor=getQuestionResultCursor(QUESTION_ID);
-            Log.d(LOG_TAG,"CURSOR CNT=>"+resultCursor.getCount());
+            resultCursor = getQuestionResultCursor(QUESTION_ID);
+            Log.d(LOG_TAG, "CURSOR CNT=>" + resultCursor.getCount());
         }
         ShowQuestion();
     }
@@ -129,27 +128,27 @@ public class Survey001Activity extends ActionBarActivity {
         // GOOD PRACTICE
         //http://developer.android.com/reference/android/database/Cursor.html
         //Caused by: java.lang.NullPointerException
-        if (resultCursor!=null) {
+        if (resultCursor != null) {
             resultCursor.close();
-        }else{
-            Log.d(LOG_TAG,"It seems resultCursor is null!");
+        } else {
+            Log.d(LOG_TAG, "It seems resultCursor is null!");
         }
     }
 
-    private Cursor getQuestionResultCursor(String question_id){
-        Log.d(LOG_TAG," ...DOING QUERY");
-        String[] projection=new String[]{
+    private Cursor getQuestionResultCursor(String question_id) {
+        Log.d(LOG_TAG, " ...DOING QUERY");
+        String[] projection = new String[]{
                 SurveyProvider.COLUMN_QUESTION_ID,
                 SurveyProvider.COLUMN_ANS01,
                 SurveyProvider.COLUMN_ANS02,
                 SurveyProvider.COLUMN_ANS03,
         };
-        String selection=SurveyProvider.COLUMN_QUESTION_ID+"='"+question_id+"'";
-        Cursor cursor= getContentResolver().query(
+        String selection = SurveyProvider.COLUMN_QUESTION_ID + "='" + question_id + "'";
+        Cursor cursor = getContentResolver().query(
                 SurveyProvider.CONTENT_URI,
                 projection,
                 selection,
-                null,null);
+                null, null);
 
 
         return cursor;
@@ -192,7 +191,7 @@ public class Survey001Activity extends ActionBarActivity {
             btnNext.setEnabled(true);
         }
 
-        if (working_mode==DOING_SURVEY) {
+        if (working_mode == DOING_SURVEY) {
             if (answer[questionNumber] == -1) {
                 // when entering new or unanswered question,
                 radioGrp.clearCheck();
@@ -226,63 +225,75 @@ public class Survey001Activity extends ActionBarActivity {
         ShowQuestion();
     }
 
+    private int[] getAnswerCount() {
+        int[] valArray = {0, 0, 0, 0, 0, 0};
+        Log.d(LOG_TAG, "ShowQuestion() questionNumber=" + questionNumber);
+        int val = 0;
+        resultCursor.moveToFirst();
+        do {
+
+            switch (questionNumber) {
+                case 0: // match to ans1
+                    val = Integer.parseInt(resultCursor.getString(1));
+                    break;
+                case 1:// match to ans2
+                    val = Integer.parseInt(resultCursor.getString(2));
+                    break;
+
+                case 2:// match to ans3
+                    val = Integer.parseInt(resultCursor.getString(3));
+                    break;
+
+                default:
+                    Log.d(LOG_TAG, "ShowQuestion(), TODO ... questionNumber=" + questionNumber);
+
+            }
+            //
+            valArray[val]++;
+        } while (resultCursor.moveToNext());
+
+        return valArray;
+    }
+
     private void ShowQuestion() {
 
         checkComplete();
-        if (working_mode==DOING_SURVEY) {
+        if (working_mode == DOING_SURVEY) {
             txtQuestion.setText(QUESTION_SET[questionNumber][0]);
             radioBtn1.setText(QUESTION_SET[questionNumber][1]);
             radioBtn2.setText(QUESTION_SET[questionNumber][2]);
             radioBtn3.setText(QUESTION_SET[questionNumber][3]);
         }
-        if (working_mode==CHECKING_SURVEY_RESULT) {
+        if (working_mode == CHECKING_SURVEY_RESULT) {
             radioBtn1.setEnabled(false);
             radioBtn2.setEnabled(false);
             radioBtn3.setEnabled(false);
 
-            int num1=0;
-            int num2=60;
-            int num3=25;
-            Log.d(LOG_TAG,"ShowQuestion() questionNumber="+questionNumber);
-            switch (questionNumber){
-                case 0:// match to ans1
-                    Log.d(LOG_TAG,"getColumnName(1)="+resultCursor.getColumnName(1));
-
-                    resultCursor.moveToFirst();
-                    do{
-                        int val=Integer.parseInt( resultCursor.getString(1)); // 1 ==> ans01
-                        Log.d(LOG_TAG," val="+val);
-
-                    }while (resultCursor.moveToNext());
-
-                    break;
-                case 1:// match to ans2
-                case 2:// match to ans3
-                    break;
-                default:
-                    Log.d(LOG_TAG,"ShowQuestion(), TODO ... questionNumber="+questionNumber);
-
-            }
-
+            int num1 = 0;
+            int num2 = 60;
+            int num3 = 25;
+            int[] numVal=getAnswerCount();
+            num1=numVal[1];
+            num2=numVal[2];
+            num3=numVal[3];
 
 
 //            String style="% -- "
-            String style=" ";
-            float total=num1+num2+num3;
+            String style = " ";
+            float total = num1 + num2 + num3;
 
 //            String.format("%.2f", value) ;
 
-            String strFormat="%4.1f%% -- %s -- 計%d票 ";
-            String result1=String.format(strFormat,100*num1/total,QUESTION_SET[questionNumber][1],num1);
-            String result2=String.format(strFormat,100*num2/total,QUESTION_SET[questionNumber][2],num2);
-            String result3=String.format(strFormat,100*num3/total,QUESTION_SET[questionNumber][3],num3);
-
+            String strFormat = "%4.1f%% -- %s -- 計%d票 ";
+            String result1 = String.format(strFormat, 100 * num1 / total, QUESTION_SET[questionNumber][1], num1);
+            String result2 = String.format(strFormat, 100 * num2 / total, QUESTION_SET[questionNumber][2], num2);
+            String result3 = String.format(strFormat, 100 * num3 / total, QUESTION_SET[questionNumber][3], num3);
 
 
             txtQuestion.setText(QUESTION_SET[questionNumber][0]);
-            radioBtn1.setText( result1);
-            radioBtn2.setText( result2);
-            radioBtn3.setText( result3);
+            radioBtn1.setText(result1);
+            radioBtn2.setText(result2);
+            radioBtn3.setText(result3);
         }
         handleButtons();
     }
@@ -339,7 +350,7 @@ public class Survey001Activity extends ActionBarActivity {
     }
 
     private void checkComplete() {
-        if (working_mode==CHECKING_SURVEY_RESULT) {
+        if (working_mode == CHECKING_SURVEY_RESULT) {
             btnSubmit.setVisibility(View.VISIBLE);
             btnSubmit.setEnabled(false);
 
