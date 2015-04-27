@@ -421,6 +421,10 @@ public class Survey001Activity extends ActionBarActivity {
                     btnPrev.setEnabled(false);
                     btnSubmit.setText("提交到雲端服務成功,請按手機的返回,回到上一層畫面.");
                     Log.d(LOG_TAG, "...triggerGcm();");
+
+
+                    //
+                    //
                     triggerGcm();
 
                 } else {
