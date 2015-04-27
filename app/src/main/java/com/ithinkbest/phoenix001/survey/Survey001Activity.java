@@ -498,6 +498,29 @@ public class Survey001Activity extends ActionBarActivity {
 //PROBLEM
 //http://ithinkbest.com/gcm/phoenix/send_survey_update.php?secure_code=123456glkj527364859fj12@3&question_id=PHOENIX-001
 //"registration_ids" field cannot be empty
+        //since i clean up entire table data
+        //v_survey_result is broken, now return nothing
+/*
+        select `survey_result`.`reg_id` AS `reg_id`,
+        `survey_result`.`question_id` AS `question_id`,
+        `survey_result`.`ans01` AS `ans01`,
+        `survey_result`.`ans02` AS `ans02`,
+        `survey_result`.`ans03` AS `ans03`,
+        `survey_result`.`ans04` AS `ans04`,
+        `survey_result`.`ans05` AS `ans05`,
+        max(`survey_result`.`time_stamp`) AS `latest_time`,
+        count(`survey_result`.`time_stamp`) AS `submit_cnt`
+        from `survey_result`
+        where (`survey_result`.`question_id` = 'a123456')
+        group by `survey_result`.`reg_id`
+
+       NOT ANY SYSTEM ERROR, BUT PROGRAMMER
+       AFTER TESTING,
+       I DIDN'T REMOVE WHERE CLAUSE
+
+        */
+
+
 
         HttpGet httpGet = new HttpGet(str);
         Log.d(LOG_TAG, "... TO INFORM SERVER TO  => " + str);
