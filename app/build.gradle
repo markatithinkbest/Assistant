@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.ithinkbest.phoneix.assistant"
+        applicationId "com.ithinkbest.phoenix001"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
