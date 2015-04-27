@@ -39,7 +39,7 @@ public class Survey001Activity extends ActionBarActivity {
     static String regid = null;
     GoogleCloudMessaging gcm;
 
-    static final String QUESTION_ID="PHOENIX-001";
+    public static final String QUESTION_ID="PHOENIX-001";
     static int questionNumber = 0;
     static int totalQuestion = 3;
 
@@ -56,7 +56,7 @@ public class Survey001Activity extends ActionBarActivity {
 //    微型創業鳳凰> 創業課程> 創業入門班
 //    beboss.wda.gov.tw/cht/index.php?code=list&ids=6
 //    整年度創業課程查詢, 我要報名此課程, 創業入門班, 創業進階班,
-    static final String[][] QUESTION_SET = new String[][]{
+    public static final String[][] QUESTION_SET = new String[][]{
 
             {"1. 上了鳳凰創業進階班,增加我對創業的必要知識,", "沒什麼幫助", "有幫助", "很有幫助"},
             {"2. 進階班課程,對我申請貸款,", "沒什麼幫助", "有幫助", "很有幫助"},

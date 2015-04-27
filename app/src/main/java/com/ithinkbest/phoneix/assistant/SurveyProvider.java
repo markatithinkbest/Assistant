@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -128,6 +129,17 @@ public class SurveyProvider extends ContentProvider {
 //                Log.d(LOG_TAG, "############## raw query ############" + sql);
 //                return dbHelper.getReadableDatabase().rawQuery(sql, null);
             //  break;
+
+                        case uriCodeRawQuery:
+                String sql = "SELECT " +
+                        COLUMN_QUESTION_ID + ", COUNT(" + COLUMN_ANS01 + ") AS ANS01_CNT," +
+                        "COUNT(" + COLUMN_ANS02 + ") AS ANS02_CNT"+
+                         "COUNT(" + COLUMN_ANS03 + ") AS ANS03_CNT"+
+                        " FROM " + TABLE_NAME +
+                        " WHERE  " + selection +
+                        " GROUP BY " + COLUMN_QUESTION_ID;
+                Log.d(LOG_TAG, "############## raw query ############" + sql);
+                return dbHelper.getReadableDatabase().rawQuery(sql, null);
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
