@@ -31,10 +31,12 @@
     <string name="title_activity_city_list">縣市別</string>
     <string name="title_activity_cmp_rpt1">公司登記現有家數及實收資本額－按行業別及縣市別</string>
     <string name="title_activity_survey">SurveyActivity</string>
-    <string name="survey1">問卷1: 關於這支APP</string>
-    <string name="survey2">...</string>
+    <string name="survey1">問卷1: 微型創業鳳凰,進階班上課心得</string>
+    <string name="survey2">問卷2: 關於這支APP</string>
     <string name="survey3">...</string>
-    <string name="title_activity_s1">問卷1: 關於這支APP</string>
+    <string name="title_activity_s1">問卷1: 微型創業鳳凰,進階班上課心得></string>
+    <string name="title_activity_s2">問卷2: 關於這支APP</string>
+
     <string name="s1_01">1. 操作這支APP您覺得?</string>
     <string name="s1_01a">容易</string>
     <string name="s1_01b">有點困難</string>

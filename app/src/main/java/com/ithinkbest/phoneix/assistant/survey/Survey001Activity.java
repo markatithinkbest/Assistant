@@ -39,7 +39,7 @@ public class Survey001Activity extends ActionBarActivity {
     static String regid = null;
     GoogleCloudMessaging gcm;
 
-    static final String QUESTION_ID="PHOENIX-0001";
+    static final String QUESTION_ID="PHOENIX-001";
     static int questionNumber = 0;
     static int totalQuestion = 5;
 
@@ -53,14 +53,15 @@ public class Survey001Activity extends ActionBarActivity {
     Button btnNext;
     Button btnSubmit;
 
-
+//    微型創業鳳凰> 創業課程> 創業入門班
+//    beboss.wda.gov.tw/cht/index.php?code=list&ids=6
+//    整年度創業課程查詢, 我要報名此課程, 創業入門班, 創業進階班,
     static final String[][] QUESTION_SET = new String[][]{
 
-            {"1. 操作這支APP,您個人覺得?", "容易", "有點困難", "很困難"},
-            {"2. 您使用Anroid手機,已經多久了?", "三個月以內", "三個月到一年左右", "一年以上"},
-            {"3. 請您自我評估,使用Anroid手機的熟練度?", "還很陌生", "一般夠用", "非常熟練"},
-            {"4. 商工行政資料開放平台的內容,對你而言?", "沒有什麼用", "可以增加常識", "有參考價值"},
-            {"5. 您從Google商店安裝APP,有多少次了?", "10次以內", "11至100次之間", "超過100次"}
+            {"1. 上了鳳凰創業進階班,增加我對創業的必要知識,", "沒什麼幫助", "有幫助", "很有幫助"},
+            {"2. 進階班課程,對我申請貸款,", "沒什麼幫助", "有幫助", "很有幫助"},
+        {"3. 我會不會介紹有需要的朋友參加這個課程,", "不會", "不一定", "肯定會"},
+
 
     };
     // WARNING: need to maintain with QUESTION_SET together

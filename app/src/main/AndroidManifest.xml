@@ -59,6 +59,10 @@
             android:label="@string/title_activity_s1" >
         </activity>
         <activity
+            android:name=".survey.Survey002Activity"
+            android:label="@string/title_activity_s2" >
+        </activity>
+        <activity
             android:name=".gcm.ToGooglePlayActivity"
             android:label="ToGooglePlayActivity" >
         </activity>
